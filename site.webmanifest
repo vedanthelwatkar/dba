@@ -1,0 +1,21 @@
+{
+  "name": "Designs by Abhishek",
+  "short_name": "DBA",
+  "description": "India's premier luxury wedding designer with 18+ years of experience crafting celebrity weddings and bespoke event artistry.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#d4af37",
+  "icons": [
+    {
+      "src": "/initial-designsbyabhishek.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/initial-designsbyabhishek.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
