@@ -50,7 +50,7 @@ const Designs = () => {
     <div>
       <div className="designs-container sticky top-0 h-screen flex items-center justify-center overflow-hidden z-20 mb-0">
         <div className="absolute w-full h-full flex items-center justify-center">
-          <div className="absolute inset-0 w-full h-full z-0 bg-background" />
+          <div className="absolute inset-0 w-full h-full z-0 bg-gradient-to-b from-stone-50 via-amber-50/30 to-stone-100" />
           <div className="h-full w-full flex flex-col md:flex-row items-center justify-between z-10 relative px-4 md:px-0">
             <div className="relative z-10 skew-x-6 h-1/3 md:h-full w-full md:w-1/4 bg-background overflow-hidden flex items-center">
               <div className="left-images flex flex-col gap-2">
