@@ -1,109 +1,202 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const services = [
-  {
-    title: "FLORAL ARCHITECTURE",
-    description: "Flower designing; Sourcing; Art Installation",
-    image: "/services/floral-architecture-designsbyabhishek.jpg",
-  },
-  {
-    title: "CREATIVE CONCEPTS & DESIGN",
-    description: "3D modelling, CAD Floor Plans; AI Designboards",
-    image: "/services/3D-modelling-designsbyabhishek.jpg",
-  },
-  {
-    title: "LIGHT DESIGN",
-    description: "Thematic Ambience & Special effects",
-    image: "/services/light-decoration-designsbyabhishek.jpg",
-  },
-  {
-    title: "PRODUCTION & EXECUTION",
-    description: "Space Transformation; Turnkey projects",
-    image: "/services/production-designsbyabhishek.jpg",
-  },
-];
+gsap.registerPlugin(ScrollTrigger);
 
-const Services = () => {
+export default function Services() {
   const sectionRef = useRef(null);
   const titleRef = useRef(null);
-  const cardsRef = useRef([]);
+  const servicesRef = useRef([]);
+
+  const serviceData = [
+    {
+      title: "15+ Years of Excellence",
+      subtitle: "Crafting Unforgettable Moments",
+      description:
+        "Our expertise, built upon years of dedication since 2008, allows us to transform your vision into extraordinary celebrations. Our approach is designed to be seamless and sophisticated, ensuring every detail reflects your unique story.",
+      image: "/profile-images/abhishek-kaushik-image-3-designsbyabhishek.jpg",
+    },
+    {
+      title: "Finest Quality and Bespoke Design",
+      subtitle: "Luxury in Every Detail",
+      description:
+        "Lighting has the power to transform spaces, set moods, and create timeless memories. We specialize in curating elegant and magical lighting experiences that elevate your celebration with warmth and grandeur.",
+      image: "/services/light-decoration-designsbyabhishek.jpg",
+    },
+    {
+      title: "The Art of Flawless Execution",
+      subtitle: "Your Vision, Our Passion",
+      description:
+        "From stage to seating, florals to flooring — we manage every production detail with precision. Our seamless coordination ensures your event unfolds effortlessly, leaving you stress-free to enjoy the moment.",
+      image: "/services/production-designsbyabhishek.jpg",
+    },
+    {
+      title: "More Than Just Events",
+      subtitle: "Creating Lasting Memories",
+      description:
+        "From immersive 3D concepts to stunningly executed event layouts, we bring imagination to life. Our creative designs help you visualize the celebration even before it unfolds, ensuring perfection in planning and delivery.",
+      image: "/services/3D-modelling-designsbyabhishek.jpg",
+    },
+  ];
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Title animation
-      gsap.from(titleRef.current, {
-        y: 100,
-        opacity: 0,
-        duration: 1.2,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: titleRef.current,
-          start: "top 80%",
-        },
-      });
-
-      // Cards animation
-      cardsRef.current.forEach((card, index) => {
-        gsap.from(card, {
-          y: 100,
-          opacity: 0,
-          duration: 1,
-          delay: index * 0.2,
+      gsap.fromTo(
+        titleRef.current.querySelectorAll(".char"),
+        { opacity: 0, y: 100 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1.2,
+          stagger: 0.03,
           ease: "power3.out",
           scrollTrigger: {
-            trigger: card,
-            start: "top 85%",
+            trigger: titleRef.current,
+            start: "top 80%",
+            once: true,
+          },
+        }
+      );
+
+      servicesRef.current.forEach((service, index) => {
+        if (!service) return;
+
+        const image = service.querySelector(".service-image");
+        const content = service.querySelector(".service-content");
+
+        gsap.fromTo(
+          image,
+          {
+            clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)",
+            scale: 1.2,
+          },
+          {
+            clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+            scale: 1,
+            duration: 1.5,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: image,
+              start: "top 80%",
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: content,
+            start: "top 70%",
+            toggleActions: "play none none reverse",
           },
         });
+
+        tl.fromTo(
+          service.querySelector(".main-service-title"),
+          { opacity: 0, y: 50 },
+          { opacity: 1, y: 0, duration: 0.8 }
+        )
+          .fromTo(
+            service.querySelector(".service-subtitle"),
+            { opacity: 0, y: 30 },
+            { opacity: 1, y: 0, duration: 0.6 },
+            0.2
+          )
+          .fromTo(
+            service.querySelectorAll(".word"),
+            { opacity: 0, y: 20 },
+            { opacity: 1, y: 0, duration: 0.5, stagger: 0.02 },
+            0.4
+          );
       });
     }, sectionRef);
 
     return () => ctx.revert();
   }, []);
 
+  const splitTextIntoChars = (text) =>
+    text.split("").map((char, i) => (
+      <span key={i} className="char inline-block">
+        {char === " " ? "\u00A0" : char}
+      </span>
+    ));
+
+  const splitTextIntoWords = (text) =>
+    text.split(" ").map((word, i) => (
+      <span key={i} className="font-cormorant word inline-block mr-2">
+        {word}
+      </span>
+    ));
+
   return (
     <section
       id="services"
       ref={sectionRef}
-      className="py-24 bg-gradient-to-b from-stone-50 via-amber-50/30 to-stone-100"
+      className="py-20 bg-gradient-to-b from-white via-background via-[50%] to-white to-[80%] relative overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-6">
-        <div ref={titleRef} className="text-center mb-20">
-          <h2 className="text-5xl md:text-6xl font-light text-stone-800 tracking-tight mb-6">
-            Services
-          </h2>
-          <p className="text-stone-600 text-lg font-light max-w-2xl mx-auto">
-            Comprehensive design solutions for luxury weddings and exclusive
-            events
+        <div className="text-center mb-20">
+          <p className="text-nyghtserif2 text-sm uppercase tracking-wider mb-4">
+            Features
           </p>
+
+          <div ref={titleRef} className="mb-8 text-center">
+            <h2 className="text-6xl md:text-8xl text-nyghtserif font-light leading-tight">
+              {splitTextIntoChars("Why Designs by Abhishek?")}
+            </h2>
+          </div>
+
+          <div className="max-w-2xl mx-auto">
+            <button className="px-8 py-3 border border-stone-300 rounded-full text-stone-700 hover:bg-stone-100 transition-colors duration-300">
+              Let's get started
+            </button>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          {services.map((service, index) => (
+        <div className="space-y-32">
+          {serviceData.map((service, index) => (
             <div
               key={index}
-              ref={(el) => (cardsRef.current[index] = el)}
-              className="group cursor-pointer"
+              ref={(el) => (servicesRef.current[index] = el)}
+              className={`grid lg:grid-cols-2 gap-16 items-center ${
+                index % 2 === 1 ? "lg:grid-flow-col-dense" : ""
+              }`}
             >
-              <div className="relative overflow-hidden mb-6 aspect-[4/3]">
-                <img
-                  src={service.image || "/placeholder.svg"}
-                  alt={service.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-500" />
+              {/* Image Section */}
+              <div className={`${index % 2 === 1 ? "lg:col-start-2" : ""}`}>
+                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
+                  <img
+                    src={service.image || "/placeholder.svg"}
+                    alt={service.title}
+                    className="service-image w-full h-full object-cover"
+                  />
+                </div>
               </div>
 
-              <div className="space-y-3">
-                <h3 className="text-2xl font-light text-stone-800 tracking-wide">
-                  {service.title}
-                </h3>
-                <p className="text-stone-600 font-light leading-relaxed">
-                  {service.description}
-                </p>
+              {/* Content Section */}
+              <div
+                className={`service-content space-y-6 ${
+                  index % 2 === 1 ? "lg:col-start-1" : ""
+                }`}
+              >
+                <div className="space-y-4">
+                  <h3 className="main-service-title text-3xl md:text-4xl text-nyghtserif2 font-light">
+                    {service.title}
+                  </h3>
+                  <div className="w-16 h-0.5 bg-nyghtserif2/20"></div>
+                </div>
+
+                <div className="service-description space-y-4">
+                  <h4 className="service-subtitle font-cormorant text-xl text-nyghtserif">
+                    {service.subtitle}
+                  </h4>
+                  <p className="text-nyghtserif leading-relaxed text-lg">
+                    {splitTextIntoWords(service.description)}
+                  </p>
+                </div>
               </div>
             </div>
           ))}
@@ -111,6 +204,4 @@ const Services = () => {
       </div>
     </section>
   );
-};
-
-export default Services;
+}

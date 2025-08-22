@@ -32,6 +32,8 @@ export default {
         light: "#fff",
         burnt: "#211C1D",
         gold: "#F1E2AD",
+        nyghtserif2: "#51483f",
+        nyghtserif: "#675b50",
         primary: {
           DEFAULT: "#532200",
           foreground: "hsl(0 0% 100%)",

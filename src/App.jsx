@@ -6,12 +6,12 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ReactLenis from "lenis/react";
 import Hero from "./components/Hero";
 import Services from "./components/Services";
-import Portfolio from "./components/Portfolio";
 import Scenography from "./components/Scenography";
-import GraphicDesign from "./components/GraphicDesign";
 import Designs from "./components/Designs";
-import About from "./components/About";
+import Clients from "./components/Clients";
 import Contact from "./components/Contact";
+import Testimonials from "./components/Testimonials";
+import Navigation from "./components/Navigation";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -36,13 +36,13 @@ const App = () => {
     <ReactLenis root options={{ lerp: 0.1, duration: 1.2, smoothWheel: true }}>
       <div ref={appRef} className="w-full min-h-screen bg-stone-50">
         <div className="page-content">
+          <Navigation />
           <Hero />
           <Designs />
-          <About />
+          <Clients />
           <Services />
-          <Portfolio />
+          <Testimonials />
           <Scenography />
-          <GraphicDesign />
           <Contact />
         </div>
       </div>

@@ -64,8 +64,7 @@ html {
   }
   body {
     @apply bg-light text-foreground;
-    font-family: "Cormorant Garamond", serif, Georgia, "Times New Roman", Times,
-      serif;
+    font-family: "NyghtSerif", serif, Georgia, "Times New Roman", Times, serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -75,7 +74,7 @@ html {
   h4,
   h5,
   h6 {
-    font-family: "Bodoni Moda", serif, Georgia, "Times New Roman", Times, serif;
+    font-family: "NyghtSerif", serif, Georgia, "Times New Roman", Times, serif;
   }
 }
 
