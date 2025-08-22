@@ -81,14 +81,14 @@ export default function Testimonials() {
     if (!container || !background || !carousel) return;
 
     gsap.to(background, {
-      yPercent: -60,
-      scale: 1.4,
+      yPercent: -40, // Reduced parallax effect for better performance
+      scale: 1.2, // Reduced scale
       ease: "none",
       scrollTrigger: {
         trigger: container,
         start: "top bottom",
         end: "bottom top",
-        scrub: true,
+        scrub: 1, // Reduced scrub value
       },
     });
 
@@ -103,7 +103,7 @@ export default function Testimonials() {
           trigger: background.current,
           start: "top top",
           end: "bottom top",
-          scrub: true,
+          scrub: 1, // Reduced scrub value
         },
       }
     );
@@ -121,7 +121,7 @@ export default function Testimonials() {
 
     animationRef.current = gsap.to(carousel, {
       x: -totalWidth,
-      duration: 30,
+      duration: 40,
       ease: "none",
       repeat: -1,
     });
@@ -132,7 +132,7 @@ export default function Testimonials() {
     const handleScroll = () => {
       if (!isScrolling) {
         isScrolling = true;
-        currentSpeedRef.current = 3;
+        currentSpeedRef.current = 2; // Reduced speed multiplier
         animationRef.current.timeScale(currentSpeedRef.current);
       }
 
@@ -188,8 +188,7 @@ export default function Testimonials() {
         ref={backgroundRef}
         className="absolute inset-0 w-full h-[120%] bg-cover bg-center bg-no-repeat z-10"
         style={{
-          backgroundImage:
-            'url("/portfolio/bride-entry-setup-designsbyabhishek.jpg")',
+          backgroundImage: 'url("/bride-entry-setup-designsbyabhishek.jpg")',
         }}
       />
 

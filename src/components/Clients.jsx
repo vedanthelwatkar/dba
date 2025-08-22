@@ -1,10 +1,10 @@
-"use client";
+"use client"
 
-import { useEffect, useRef, useState } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useEffect, useRef, useState } from "react"
+import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger)
 
 const clientLogos = [
   { src: "/clients/amp-motors-arigatoevents.png", name: "AMP Motors" },
@@ -35,108 +35,98 @@ const clientLogos = [
     src: "/clients/yuvraj-and-hazel-arigatoevents.png",
     name: "Yuvraj & Hazel",
   },
-];
+]
 
 const PremiumCarousel = () => {
-  const carouselRef = useRef(null);
-  const containerRef = useRef(null);
-  const [hoveredClient, setHoveredClient] = useState(null);
-  const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
-  const animationRef = useRef(null);
-  const scrollSpeedRef = useRef(1);
-  const isHoveredRef = useRef(false);
+  const carouselRef = useRef(null)
+  const containerRef = useRef(null)
+  const [hoveredClient, setHoveredClient] = useState(null)
+  const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 })
+  const animationRef = useRef(null)
+  const scrollSpeedRef = useRef(1)
+  const isHoveredRef = useRef(false)
 
   useEffect(() => {
-    const carousel = carouselRef.current;
-    const container = containerRef.current;
+    const carousel = carouselRef.current
+    const container = containerRef.current
 
-    if (!carousel || !container) return;
+    if (!carousel || !container) return
 
-    const totalWidth = carousel.scrollWidth / 2;
+    const totalWidth = carousel.scrollWidth / 2
 
-    gsap.set(carousel, { x: 0 });
+    gsap.set(carousel, { x: 0 })
 
     animationRef.current = gsap.to(carousel, {
       x: -totalWidth,
-      duration: 30,
+      duration: 40,
       ease: "none",
       repeat: -1,
       modifiers: {
         x: (x) => {
-          const parsed = Number.parseFloat(x);
-          return `${parsed % totalWidth}px`;
+          const parsed = Number.parseFloat(x)
+          return `${parsed % totalWidth}px`
         },
       },
-    });
+    })
 
     ScrollTrigger.create({
       trigger: container,
       start: "top bottom",
       end: "bottom top",
       onUpdate: (self) => {
-        if (isHoveredRef.current) return;
+        if (isHoveredRef.current) return
 
-        const velocity = self.getVelocity();
-        const speedMultiplier = Math.abs(velocity) > 100 ? 3 : 0.5;
-        scrollSpeedRef.current = speedMultiplier;
+        const velocity = self.getVelocity()
+        const speedMultiplier = Math.abs(velocity) > 100 ? 2 : 0.8
+        scrollSpeedRef.current = speedMultiplier
 
         if (animationRef.current) {
-          animationRef.current.timeScale(speedMultiplier);
+          animationRef.current.timeScale(speedMultiplier)
         }
       },
-    });
+    })
 
     return () => {
       if (animationRef.current) {
-        animationRef.current.kill();
+        animationRef.current.kill()
       }
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-    };
-  }, []);
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
+    }
+  }, [])
 
   const handleMouseEnter = (clientName, event) => {
-    const rect = event.currentTarget.getBoundingClientRect();
+    const rect = event.currentTarget.getBoundingClientRect()
 
-    setHoveredClient(clientName);
+    setHoveredClient(clientName)
     setTooltipPosition({
       x: rect.left + rect.width / 2,
       y: rect.top - 10,
-    });
-    isHoveredRef.current = true;
+    })
+    isHoveredRef.current = true
 
     if (animationRef.current) {
-      animationRef.current.pause();
+      animationRef.current.pause()
     }
-  };
+  }
 
   const handleMouseLeave = () => {
-    setHoveredClient(null);
-    isHoveredRef.current = false;
+    setHoveredClient(null)
+    isHoveredRef.current = false
 
     if (animationRef.current) {
-      animationRef.current.resume();
-      animationRef.current.timeScale(scrollSpeedRef.current);
+      animationRef.current.resume()
+      animationRef.current.timeScale(scrollSpeedRef.current)
     }
-  };
+  }
 
-  const duplicatedLogos = [
-    ...clientLogos,
-    ...clientLogos,
-    ...clientLogos,
-    ...clientLogos,
-    ...clientLogos,
-    ...clientLogos,
-  ];
+  const duplicatedLogos = [...clientLogos, ...clientLogos, ...clientLogos, ...clientLogos]
 
   return (
     <section id="clients" className="py-40 overflow-hidden">
       <div className="text-center mb-24 px-6">
-        <h2 className="text-4xl md:text-5xl font-nyghtserif mb-4">
-          Trusted by Industry Leaders
-        </h2>
+        <h2 className="text-4xl md:text-5xl font-nyghtserif mb-4">Trusted by Industry Leaders</h2>
         <p className="text-nyghtserif text-lg font-cormorant">
-          We've had the privilege of partnering with some of the most
-          prestigious brands
+          We've had the privilege of partnering with some of the most prestigious brands
         </p>
       </div>
 
@@ -168,23 +158,24 @@ const PremiumCarousel = () => {
                 src={client.src || "/placeholder.svg"}
                 alt={client.name}
                 className="h-16 w-auto object-contain 
-                filter hover:grayscale transition-all duration-300
-                "
+                filter hover:grayscale transition-all duration-300"
+                loading="lazy"
+                decoding="async"
               />
             </div>
           ))}
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
 const Clients = () => {
   return (
     <div className="bg-white">
       <PremiumCarousel />
     </div>
-  );
-};
+  )
+}
 
-export default Clients;
+export default Clients

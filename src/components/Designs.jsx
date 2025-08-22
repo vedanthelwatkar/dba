@@ -12,25 +12,25 @@ const Designs = () => {
   const yearTextRef = useRef(null);
 
   const items = [
-    { src: "/scenography/haldi-event-designsbyabhishek.jpg" },
-    { src: "/scenography/grand-sangeet-decoration-designsbyabhishek.jpg" },
-    { src: "/scenography/musical-setup-designsbyabhishek.jpg" },
-    { src: "/scenography/haldi-decoration-designsbyabhishek.jpg" },
-    { src: "/scenography/sangeet-setup-designsbyabhishek.jpg" },
-    { src: "/scenography/haldi-floral-decoration-designsbyabhishek.jpg" },
-    { src: "/scenography/wedding-hall-decoration-designsbyabhishek.jpg" },
-    { src: "/scenography/wedding-mandap-decoration-designsbyabhishek.jpg" },
+    { src: "/haldi-event-designsbyabhishek.jpg" },
+    { src: "/grand-sangeet-decoration-designsbyabhishek.jpg" },
+    { src: "/musical-setup-designsbyabhishek.jpg" },
+    { src: "/haldi-decoration-designsbyabhishek.jpg" },
+    { src: "/sangeet-setup-designsbyabhishek.jpg" },
+    { src: "/haldi-floral-decoration-designsbyabhishek.jpg" },
+    { src: "/wedding-hall-decoration-designsbyabhishek.jpg" },
+    { src: "/wedding-mandap-decoration-designsbyabhishek.jpg" },
   ];
 
   const itemsNew = [
-    { src: "/portfolio/bride-entry-setup-designsbyabhishek.jpg" },
-    { src: "/portfolio/floral-decoration-designsbyabhishek.jpg" },
-    { src: "/portfolio/indoor-decoration-designsbyabhishek.jpg" },
-    { src: "/portfolio/night-decor-designsbyabhishek.jpg" },
-    { src: "/portfolio/outside-wedding-setup-designsbyabhishek.jpg" },
-    { src: "/portfolio/reception-floral-tunnel-designsbyabhishek.jpg" },
-    { src: "/portfolio/sangeet-stage-light-designsbyabhishek.jpg" },
-    { src: "/portfolio/wedding-setup-designsbyabhishek.jpg" },
+    { src: "/bride-entry-setup-designsbyabhishek.jpg" },
+    { src: "/floral-decoration-designsbyabhishek.jpg" },
+    { src: "/indoor-decoration-designsbyabhishek.jpg" },
+    { src: "/night-decor-designsbyabhishek.jpg" },
+    { src: "/outside-wedding-setup-designsbyabhishek.jpg" },
+    { src: "/reception-floral-tunnel-designsbyabhishek.jpg" },
+    { src: "/sangeet-stage-light-designsbyabhishek.jpg" },
+    { src: "/wedding-setup-designsbyabhishek.jpg" },
   ];
 
   useEffect(() => {
@@ -134,17 +134,20 @@ const Designs = () => {
       },
     });
 
-    gsap.to(".center-text", {
-      yPercent: -5,
-      scale: 1.05,
-      ease: "none",
-      scrollTrigger: {
-        trigger: ".designs-container",
-        start: "top bottom",
-        end: "bottom top",
-        scrub: true,
-      },
-    });
+    const isMobile = window.innerWidth < 768;
+    if (!isMobile) {
+      gsap.to(".center-text", {
+        yPercent: -5,
+        scale: 1.05,
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".designs-container",
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
+    }
 
     gsap.fromTo(
       designsRef.current,
@@ -163,19 +166,21 @@ const Designs = () => {
       }
     );
 
-    gsap.to(craftingTextRef.current, {
-      y: "+=5",
-      duration: 3,
-      ease: "power2.inOut",
-      yoyo: true,
-      repeat: -1,
-      scrollTrigger: {
-        trigger: ".designs-container",
-        start: "top top",
-        end: "bottom top",
-        scrub: false,
-      },
-    });
+    if (!isMobile) {
+      gsap.to(craftingTextRef.current, {
+        // y: "+=5",
+        duration: 3,
+        ease: "power2.inOut",
+        yoyo: true,
+        repeat: -1,
+        scrollTrigger: {
+          trigger: ".designs-container",
+          start: "top top",
+          end: "bottom top",
+          scrub: false,
+        },
+      });
+    }
 
     return () => ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
   }, []);
@@ -208,12 +213,14 @@ const Designs = () => {
                   alt="Design"
                   className="max-w-full h-auto object-cover"
                   style={{ minHeight: "180px" }}
+                  loading="lazy"
+                  decoding="async"
+                  fetchPriority={index < 2 ? "high" : "low"}
                 />
               ))}
             </div>
           </div>
 
-          {/* Fixed center text container */}
           <div className="center-text absolute inset-0 flex items-center justify-center z-20 px-4 md:px-8">
             <div className="flex flex-col items-center justify-center text-center w-full max-w-4xl">
               <div
@@ -242,6 +249,9 @@ const Designs = () => {
                   alt="Design"
                   className="max-w-full h-auto object-cover"
                   style={{ minHeight: "180px" }}
+                  loading="lazy"
+                  decoding="async"
+                  fetchPriority={index < 2 ? "high" : "low"}
                 />
               ))}
             </div>

@@ -1,14 +1,14 @@
-"use client";
+"use client"
 
-import CallIcon from "@/svgComponents/CallIcon";
-import CopyrightIcon from "@/svgComponents/CopyrightIcon";
-import FacebookIcon from "@/svgComponents/FacebookIcon";
-import LinkedinIcon from "@/svgComponents/LinkedinIcon";
-import LocationIcon from "@/svgComponents/LocationIcon";
-import MailIcon from "@/svgComponents/MailIcon";
-import PinterestIcon from "@/svgComponents/PinterestIcon";
-import QR from "@/svgComponents/QR";
-import WhatsappIcon from "@/svgComponents/WhatsappIcon";
+import CallIcon from "@/svgComponents/CallIcon"
+import CopyrightIcon from "@/svgComponents/CopyrightIcon"
+import FacebookIcon from "@/svgComponents/FacebookIcon"
+import LinkedinIcon from "@/svgComponents/LinkedinIcon"
+import LocationIcon from "@/svgComponents/LocationIcon"
+import MailIcon from "@/svgComponents/MailIcon"
+import PinterestIcon from "@/svgComponents/PinterestIcon"
+import QR from "@/svgComponents/QR"
+import WhatsappIcon from "@/svgComponents/WhatsappIcon"
 
 const Contact = () => {
   const navLinks = [
@@ -47,13 +47,10 @@ const Contact = () => {
       href: "https://maps.app.goo.gl/s9TNijuWmBkh95Le6",
       icon: <LocationIcon color="#211C1D" />,
     },
-  ];
+  ]
 
   return (
-    <section
-      id="contact"
-      className="min-h-screen bg-background text-nyghtserif2 pt-20 relative overflow-hidden"
-    >
+    <section id="contact" className="min-h-screen bg-background text-nyghtserif2 pt-20 relative overflow-hidden">
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <h1 className="text-[8rem] sm:text-[12rem] md:text-[16rem] lg:text-[20rem] text-center font-nyghtserif text-black/5 select-none leading-none">
           DESIGNS BY ABHISHEK
@@ -68,6 +65,8 @@ const Contact = () => {
                 src="/luxury-haldi-event-designsbyabhishek.jpg"
                 alt="Designs by Abhishek Setup"
                 className="w-full h-full object-cover"
+                loading="lazy"
+                decoding="async"
               />
             </div>
 
@@ -103,8 +102,7 @@ const Contact = () => {
                   <QR />
                 </div>
                 <span className="text-sm sm:text-base text-center sm:text-left font-cormorant">
-                  Scan the QR code to connect with our expert instantly on
-                  Whatsapp
+                  Scan the QR code to connect with our expert instantly on Whatsapp
                 </span>
               </div>
             </div>
@@ -164,18 +162,14 @@ const Contact = () => {
             <div className="border-2 border-dashed border-black/20 rounded-2xl lg:rounded-3xl p-4 sm:p-6 lg:p-8">
               <div className="flex flex-col sm:flex-row sm:items-start space-y-4 sm:space-y-0 sm:space-x-6">
                 <div className="w-12 h-12 sm:w-16 sm:h-16 bg-amber-100 rounded-full flex items-center justify-center flex-shrink-0 self-center sm:self-start">
-                  <svg
-                    className="w-6 h-6 sm:w-8 sm:h-8 text-amber-600"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
+                  <svg className="w-6 h-6 sm:w-8 sm:h-8 text-amber-600" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                   </svg>
                 </div>
                 <div className="flex-1 text-center sm:text-left">
                   <p className="text-nyghtserif2 font-cormorant text-base sm:text-lg mb-3">
-                    Need premium event design services? Explore our extensive
-                    portfolio for luxury events and celebrations!
+                    Need premium event design services? Explore our extensive portfolio for luxury events and
+                    celebrations!
                   </p>
                   <a
                     href="#portfolio"
@@ -211,6 +205,7 @@ const Contact = () => {
                   scrolling="no"
                   allowTransparency="true"
                   title="Instagram Feed - @designsbyabhishek"
+                  loading="lazy"
                 />
               </div>
             </div>
@@ -221,9 +216,7 @@ const Contact = () => {
         <div className="mt-12 lg:mt-20 pt-8 lg:pt-12 border-t border-black/10 mb-6 lg:mb-10">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-6 lg:space-y-0">
             <div className="text-center lg:text-left">
-              <h3 className="text-2xl sm:text-3xl font-nyghtserif text-nyghtserif2 mb-2">
-                1st Floor, Modi House,
-              </h3>
+              <h3 className="text-2xl sm:text-3xl font-nyghtserif text-nyghtserif2 mb-2">1st Floor, Modi House,</h3>
               <p className="text-nyghtserif2 font-nyghtserif text-lg sm:text-xl">
                 Off Link Rd, near Fun Republic, Mumbai, 400053
                 <br />
@@ -236,13 +229,12 @@ const Contact = () => {
         {/* Copyright - Responsive */}
         <div className="text-center lg:text-left">
           <span className="flex items-center justify-center lg:justify-start gap-1 font-cormorant text-nyghtserif2 mb-4">
-            <CopyrightIcon color="#211C1D" /> {new Date().getFullYear()} Designs
-            By Abhishek
+            <CopyrightIcon color="#211C1D" /> {new Date().getFullYear()} Designs By Abhishek
           </span>
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Contact;
+export default Contact

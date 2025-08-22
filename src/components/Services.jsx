@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -24,21 +24,21 @@ export default function Services() {
       subtitle: "Luxury in Every Detail",
       description:
         "Lighting has the power to transform spaces, set moods, and create timeless memories. We specialize in curating elegant and magical lighting experiences that elevate your celebration with warmth and grandeur.",
-      image: "/services/light-decoration-designsbyabhishek.jpg",
+      image: "/light-decoration-designsbyabhishek.jpg",
     },
     {
       title: "The Art of Flawless Execution",
       subtitle: "Your Vision, Our Passion",
       description:
         "From stage to seating, florals to flooring — we manage every production detail with precision. Our seamless coordination ensures your event unfolds effortlessly, leaving you stress-free to enjoy the moment.",
-      image: "/services/production-designsbyabhishek.jpg",
+      image: "/production-designsbyabhishek.jpg",
     },
     {
       title: "More Than Just Events",
       subtitle: "Creating Lasting Memories",
       description:
         "From immersive 3D concepts to stunningly executed event layouts, we bring imagination to life. Our creative designs help you visualize the celebration even before it unfolds, ensuring perfection in planning and delivery.",
-      image: "/services/3D-modelling-designsbyabhishek.jpg",
+      image: "/3D-modelling-designsbyabhishek.jpg",
     },
   ];
 
@@ -50,8 +50,8 @@ export default function Services() {
         {
           opacity: 1,
           y: 0,
-          duration: 1.2,
-          stagger: 0.03,
+          duration: 1,
+          stagger: 0.02, // Reduced stagger for better performance
           ease: "power3.out",
           scrollTrigger: {
             trigger: titleRef.current,
@@ -71,12 +71,12 @@ export default function Services() {
           image,
           {
             clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)",
-            scale: 1.2,
+            scale: 1.1, // Reduced scale for better performance
           },
           {
             clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
             scale: 1,
-            duration: 1.5,
+            duration: 1.2, // Reduced duration
             ease: "power3.out",
             scrollTrigger: {
               trigger: image,
@@ -97,19 +97,19 @@ export default function Services() {
         tl.fromTo(
           service.querySelector(".main-service-title"),
           { opacity: 0, y: 50 },
-          { opacity: 1, y: 0, duration: 0.8 }
+          { opacity: 1, y: 0, duration: 0.6 } // Reduced duration
         )
           .fromTo(
             service.querySelector(".service-subtitle"),
             { opacity: 0, y: 30 },
-            { opacity: 1, y: 0, duration: 0.6 },
-            0.2
+            { opacity: 1, y: 0, duration: 0.5 }, // Reduced duration
+            0.15 // Reduced delay
           )
           .fromTo(
             service.querySelectorAll(".word"),
             { opacity: 0, y: 20 },
-            { opacity: 1, y: 0, duration: 0.5, stagger: 0.02 },
-            0.4
+            { opacity: 1, y: 0, duration: 0.4, stagger: 0.015 }, // Reduced duration and stagger
+            0.3 // Reduced delay
           );
       });
     }, sectionRef);
@@ -172,6 +172,9 @@ export default function Services() {
                     src={service.image || "/placeholder.svg"}
                     alt={service.title}
                     className="service-image w-full h-full object-cover"
+                    loading="lazy" // Added image optimization attributes
+                    decoding="async"
+                    fetchPriority={index < 2 ? "high" : "low"}
                   />
                 </div>
               </div>
