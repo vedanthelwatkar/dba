@@ -47,14 +47,14 @@ const Designs = () => {
 
     gsap.set(craftingTextRef.current, {
       opacity: 0,
-      y: 50,
-      rotationX: 45,
+      y: 20,
+      rotationX: 15,
       transformOrigin: "center bottom",
     });
     gsap.set(yearTextRef.current, {
       opacity: 0,
-      y: 30,
-      scale: 0.8,
+      y: 15,
+      scale: 0.9,
     });
 
     ScrollTrigger.create({
@@ -135,8 +135,8 @@ const Designs = () => {
     });
 
     gsap.to(".center-text", {
-      yPercent: -20,
-      scale: 1.1,
+      yPercent: -5,
+      scale: 1.05,
       ease: "none",
       scrollTrigger: {
         trigger: ".designs-container",
@@ -164,8 +164,8 @@ const Designs = () => {
     );
 
     gsap.to(craftingTextRef.current, {
-      y: "+=10",
-      duration: 2,
+      y: "+=5",
+      duration: 3,
       ease: "power2.inOut",
       yoyo: true,
       repeat: -1,
@@ -213,21 +213,22 @@ const Designs = () => {
             </div>
           </div>
 
-          <div className="center-text leading-normal w-full md:w-[50%] px-4 flex flex-col gap-10">
-            <div className="flex flex-col">
+          {/* Fixed center text container */}
+          <div className="center-text absolute inset-0 flex items-center justify-center z-20 px-4 md:px-8">
+            <div className="flex flex-col items-center justify-center text-center w-full max-w-4xl">
               <div
                 ref={craftingTextRef}
-                className="font-nyghtserif text-nyghtserif2 text-center tracking-tight"
-                style={{ fontSize: "clamp(1.5rem, 8vw, 6rem)" }}
+                className="font-nyghtserif text-nyghtserif2 tracking-tight leading-tight"
+                style={{ fontSize: "clamp(2rem, 8vw, 6rem)" }}
               >
-                Crafting Elegance{" "}
-                <div
-                  ref={yearTextRef}
-                  className="font-nyghtserif italic text-nyghtserif2 text-center tracking-tight"
-                  style={{ fontSize: "clamp(1.25rem, 6vw, 3rem)" }}
-                >
-                  For 15 Years
-                </div>
+                Crafting Elegance
+              </div>
+              <div
+                ref={yearTextRef}
+                className="font-nyghtserif italic text-nyghtserif2 tracking-tight leading-tight mt-6 md:mt-8"
+                style={{ fontSize: "clamp(1.5rem, 6vw, 3rem)" }}
+              >
+                For 15 Years
               </div>
             </div>
           </div>
@@ -248,7 +249,7 @@ const Designs = () => {
         </div>
         <div
           ref={designsRef}
-          className="absolute bottom-0 left-1/2 -translate-x-1/2 max-w-xl z-20 pointer-events-none text-nyghtserif font-cormorant tracking-tight text-center text-md md:text-lg lg:text-xl"
+          className="absolute bottom-4 md:bottom-0 left-1/2 -translate-x-1/2 max-w-xl z-30 pointer-events-none text-nyghtserif font-cormorant tracking-tight text-center text-sm md:text-md lg:text-lg xl:text-xl px-4"
         >
           Where luxury meets artistry, and every celebration becomes an
           unforgettable masterpiece — crafted with passion, precision, and
