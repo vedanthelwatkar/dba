@@ -1,20 +1,20 @@
-"use client"
+"use client";
 
-import { useEffect, useRef } from "react"
-import { gsap } from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(ScrollTrigger);
 
 const Hero = () => {
-  const heroRef = useRef(null)
-  const titleRef = useRef(null)
-  const imageRef = useRef(null)
-  const whyUsRef = useRef(null)
+  const heroRef = useRef(null);
+  const titleRef = useRef(null);
+  const imageRef = useRef(null);
+  const whyUsRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline()
+      const tl = gsap.timeline();
       tl.from(imageRef.current, {
         scale: 1.1, // Reduced scale for better performance
         duration: 1.5, // Reduced duration
@@ -22,11 +22,11 @@ const Hero = () => {
       }).from(
         titleRef.current.children,
         { y: 100, opacity: 0, duration: 1, stagger: 0.15, ease: "power3.out" }, // Reduced duration and stagger
-        "-=1.2",
-      )
+        "-=1.2"
+      );
 
       gsap.to(imageRef.current, {
-        yPercent: -30, // Reduced parallax effect for better performance
+        yPercent: -40, // Reduced parallax effect for better performance
         ease: "none",
         scrollTrigger: {
           trigger: heroRef.current,
@@ -34,13 +34,13 @@ const Hero = () => {
           end: "bottom top",
           scrub: 1, // Reduced scrub value for smoother animation
         },
-      })
+      });
 
       gsap.fromTo(
         whyUsRef.current,
         { yPercent: 120, opacity: 0, filter: "blur(4px)" }, // Reduced blur for better performance
         {
-          yPercent: -40,
+          yPercent: -30,
           opacity: 1,
           filter: "blur(0px)",
           ease: "none",
@@ -50,15 +50,19 @@ const Hero = () => {
             end: "bottom top",
             scrub: 1, // Reduced scrub value
           },
-        },
-      )
-    }, heroRef)
+        }
+      );
+    }, heroRef);
 
-    return () => ctx.revert()
-  }, [])
+    return () => ctx.revert();
+  }, []);
 
   return (
-    <section id="home" ref={heroRef} className="relative h-screen overflow-hidden">
+    <section
+      id="home"
+      ref={heroRef}
+      className="relative h-screen overflow-hidden"
+    >
       <div className="absolute inset-0">
         <img
           ref={imageRef}
@@ -139,7 +143,7 @@ const Hero = () => {
         Where dreams take shape
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Hero
+export default Hero;

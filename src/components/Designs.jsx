@@ -200,7 +200,7 @@ const Designs = () => {
               backgroundSize: "cover",
               backgroundRepeat: "no-repeat",
               backgroundPosition: "center",
-              opacity: 0.2,
+              opacity: 0.5,
             }}
           />
 
@@ -235,7 +235,7 @@ const Designs = () => {
                 className="font-nyghtserif italic text-nyghtserif2 tracking-tight leading-tight mt-6 md:mt-8"
                 style={{ fontSize: "clamp(1.5rem, 6vw, 3rem)" }}
               >
-                For 15 Years
+                Since 15 Years
               </div>
             </div>
           </div>

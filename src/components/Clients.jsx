@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
-import { useEffect, useRef, useState } from "react"
-import { gsap } from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { useEffect, useRef, useState } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(ScrollTrigger);
 
 const clientLogos = [
   { src: "/clients/amp-motors-arigatoevents.png", name: "AMP Motors" },
@@ -35,122 +35,176 @@ const clientLogos = [
     src: "/clients/yuvraj-and-hazel-arigatoevents.png",
     name: "Yuvraj & Hazel",
   },
-]
+];
 
 const PremiumCarousel = () => {
-  const carouselRef = useRef(null)
-  const containerRef = useRef(null)
-  const [hoveredClient, setHoveredClient] = useState(null)
-  const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 })
-  const animationRef = useRef(null)
-  const scrollSpeedRef = useRef(1)
-  const isHoveredRef = useRef(false)
+  const carouselRef = useRef(null);
+  const containerRef = useRef(null);
+  const [hoveredClient, setHoveredClient] = useState(null);
+  const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
+
+  // Animation refs
+  const timelineRef = useRef(null);
+  const scrollTriggerRef = useRef(null);
+
+  // State tracking
+  const isHoveredRef = useRef(false);
+  const baseSpeed = useRef(1);
 
   useEffect(() => {
-    const carousel = carouselRef.current
-    const container = containerRef.current
+    const carousel = carouselRef.current;
+    const container = containerRef.current;
 
-    if (!carousel || !container) return
+    if (!carousel || !container) return;
 
-    const totalWidth = carousel.scrollWidth / 2
+    // Calculate total width for seamless loop
+    const logoWidth = 200; // Approximate width including gap
+    const totalLogos = clientLogos.length;
+    const singleSetWidth = totalLogos * logoWidth;
 
-    gsap.set(carousel, { x: 0 })
-
-    animationRef.current = gsap.to(carousel, {
-      x: -totalWidth,
-      duration: 40,
-      ease: "none",
+    // Create the main animation timeline
+    timelineRef.current = gsap.timeline({
       repeat: -1,
-      modifiers: {
-        x: (x) => {
-          const parsed = Number.parseFloat(x)
-          return `${parsed % totalWidth}px`
-        },
-      },
-    })
+      ease: "none",
+    });
 
-    ScrollTrigger.create({
+    // Animate from 0 to -singleSetWidth for seamless loop
+    timelineRef.current.to(carousel, {
+      x: -singleSetWidth,
+      duration: 30, // Base duration - adjust for desired speed
+      ease: "none",
+    });
+
+    // Create scroll trigger for speed variation
+    scrollTriggerRef.current = ScrollTrigger.create({
       trigger: container,
       start: "top bottom",
       end: "bottom top",
       onUpdate: (self) => {
-        if (isHoveredRef.current) return
+        // Only modify speed if not hovered
+        if (isHoveredRef.current) return;
 
-        const velocity = self.getVelocity()
-        const speedMultiplier = Math.abs(velocity) > 100 ? 2 : 0.8
-        scrollSpeedRef.current = speedMultiplier
+        const velocity = Math.abs(self.getVelocity());
 
-        if (animationRef.current) {
-          animationRef.current.timeScale(speedMultiplier)
+        // Calculate speed multiplier based on scroll velocity
+        let speedMultiplier;
+        if (velocity > 2000) {
+          speedMultiplier = 3;
+        } else if (velocity > 1000) {
+          speedMultiplier = 2;
+        } else if (velocity > 500) {
+          speedMultiplier = 1.5;
+        } else {
+          speedMultiplier = 1;
+        }
+
+        baseSpeed.current = speedMultiplier;
+
+        if (timelineRef.current) {
+          gsap.to(timelineRef.current, {
+            timeScale: speedMultiplier,
+            duration: 0.3,
+            ease: "power2.out",
+          });
         }
       },
-    })
+      onLeave: () => {
+        // Reset to normal speed when leaving viewport
+        if (!isHoveredRef.current && timelineRef.current) {
+          gsap.to(timelineRef.current, {
+            timeScale: 1,
+            duration: 0.5,
+            ease: "power2.out",
+          });
+        }
+      },
+    });
 
     return () => {
-      if (animationRef.current) {
-        animationRef.current.kill()
+      if (timelineRef.current) {
+        timelineRef.current.kill();
       }
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
-    }
-  }, [])
+      if (scrollTriggerRef.current) {
+        scrollTriggerRef.current.kill();
+      }
+    };
+  }, []);
 
   const handleMouseEnter = (clientName, event) => {
-    const rect = event.currentTarget.getBoundingClientRect()
+    const rect = event.currentTarget.getBoundingClientRect();
 
-    setHoveredClient(clientName)
+    setHoveredClient(clientName);
     setTooltipPosition({
       x: rect.left + rect.width / 2,
       y: rect.top - 10,
-    })
-    isHoveredRef.current = true
+    });
 
-    if (animationRef.current) {
-      animationRef.current.pause()
+    isHoveredRef.current = true;
+
+    // Smoothly pause the animation
+    if (timelineRef.current) {
+      gsap.to(timelineRef.current, {
+        timeScale: 0,
+        duration: 0.3,
+        ease: "power2.out",
+      });
     }
-  }
+  };
 
   const handleMouseLeave = () => {
-    setHoveredClient(null)
-    isHoveredRef.current = false
+    setHoveredClient(null);
+    isHoveredRef.current = false;
 
-    if (animationRef.current) {
-      animationRef.current.resume()
-      animationRef.current.timeScale(scrollSpeedRef.current)
+    // Resume animation with current base speed
+    if (timelineRef.current) {
+      gsap.to(timelineRef.current, {
+        timeScale: baseSpeed.current,
+        duration: 0.3,
+        ease: "power2.out",
+      });
     }
-  }
+  };
 
-  const duplicatedLogos = [...clientLogos, ...clientLogos, ...clientLogos, ...clientLogos]
+  // Create enough duplicates for seamless infinite scroll
+  const duplicatedLogos = [...clientLogos, ...clientLogos, ...clientLogos];
 
   return (
     <section id="clients" className="py-40 overflow-hidden">
       <div className="text-center mb-24 px-6">
-        <h2 className="text-4xl md:text-5xl font-nyghtserif mb-4">Trusted by Industry Leaders</h2>
+        <h2 className="text-4xl md:text-5xl font-nyghtserif mb-4">
+          Trusted by Industry Leaders
+        </h2>
         <p className="text-nyghtserif text-lg font-cormorant">
-          We've had the privilege of partnering with some of the most prestigious brands
+          We've had the privilege of partnering with some of the most
+          prestigious brands
         </p>
       </div>
 
       <div ref={containerRef} className="relative overflow-hidden w-full">
         {hoveredClient && (
           <div
-            className="fixed z-50 pointer-events-none bg-background text-nyghtserif2 px-4 py-2 rounded-md"
+            className="fixed z-50 pointer-events-none bg-black/80 text-white px-3 py-2 rounded-lg shadow-lg backdrop-blur-sm"
             style={{
               left: `${tooltipPosition.x}px`,
               top: `${tooltipPosition.y}px`,
               transform: "translate(-50%, -100%)",
             }}
           >
-            <span className="font-cormorant text-xl font-medium text-nyghtserif2 whitespace-nowrap">
+            <span className="font-cormorant text-base font-medium whitespace-nowrap">
               {hoveredClient}
             </span>
+            <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-black/80"></div>
           </div>
         )}
 
-        <div ref={carouselRef} className="flex items-center gap-16">
+        <div
+          ref={carouselRef}
+          className="flex items-center gap-16 will-change-transform"
+        >
           {duplicatedLogos.map((client, index) => (
             <div
               key={`${client.name}-${index}`}
-              className="flex-shrink-0 cursor-pointer"
+              className="flex-shrink-0 cursor-pointer transition-transform duration-200 hover:scale-105"
               onMouseEnter={(e) => handleMouseEnter(client.name, e)}
               onMouseLeave={handleMouseLeave}
             >
@@ -158,24 +212,25 @@ const PremiumCarousel = () => {
                 src={client.src || "/placeholder.svg"}
                 alt={client.name}
                 className="h-16 w-auto object-contain 
-                filter hover:grayscale transition-all duration-300"
+                transition-all duration-300 hover:grayscale"
                 loading="lazy"
                 decoding="async"
+                draggable={false}
               />
             </div>
           ))}
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
 const Clients = () => {
   return (
     <div className="bg-white">
       <PremiumCarousel />
     </div>
-  )
-}
+  );
+};
 
-export default Clients
+export default Clients;

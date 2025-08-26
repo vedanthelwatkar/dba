@@ -140,7 +140,7 @@ export default function Navigation() {
                   onClick={() => setIsMobileMenuOpen((s) => !s)}
                   aria-label="Toggle menu"
                   aria-expanded={isMobileMenuOpen}
-                  className="lg:hidden w-10 h-10 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center transition-all duration-300"
+                  className="lg:hidden w-10 h-10 bg-nyghtserif hover:bg-nyghtserif rounded-full flex items-center justify-center transition-all duration-300"
                 >
                   <svg
                     className="w-5 h-5 text-white"

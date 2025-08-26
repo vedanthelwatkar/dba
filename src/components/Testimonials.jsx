@@ -10,8 +10,8 @@ const testimonials = [
   {
     id: 1,
     text: "Abhishek, you lived up to our expectations and how! Bravo Bravo Bravo!! May SHE and He shower you with happiness and great success and may you make every family's wish come true. Your dedication is applaudable and I, as the eldest of the Karnani family, thank you profusely. May GOD bless you. I take a bow and offer our standing ovation.",
-    name: "CI Umesh Karnani Ji",
-    title: "Karnani Family Elder",
+    name: "Mr. Umesh Karnani Ji",
+    title: "Mr. Karnani",
     rating: 5,
   },
   {
@@ -96,7 +96,7 @@ export default function Testimonials() {
       scenographyRef.current,
       { yPercent: 120, opacity: 0 },
       {
-        yPercent: -70,
+        yPercent: -50,
         opacity: 1,
         ease: "none",
         scrollTrigger: {
