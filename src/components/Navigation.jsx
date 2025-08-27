@@ -4,23 +4,39 @@ import CallIcon from "@/svgComponents/CallIcon";
 import MailIcon from "@/svgComponents/MailIcon";
 import WhatsappIcon from "@/svgComponents/WhatsappIcon";
 import { useState, useEffect, useRef } from "react";
-
-const NAV_LINKS = [
-  "Home",
-  "Designs",
-  "Clients",
-  "Services",
-  "Testimonials",
-  "Scenography",
-];
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function Navigation() {
+  const location = useLocation();
+  const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false); // Start hidden
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const lastScrollY = useRef(0);
+  const [isNotDefault, setIsNotDefault] = useState(false);
 
-  const heroInViewRef = useRef(true); // Start as true since hero is initially in view
-  const heroObserverRef = useRef(null);
+  let heroInViewRef = useRef(null); // Start as true since hero is initially in view
+  let heroObserverRef = useRef(null);
+
+  const [navLinks, setNavLinks] = useState([]);
+
+  useEffect(() => {
+    if (location.pathname !== "/") {
+      heroInViewRef = false;
+      setIsNotDefault(true);
+      setNavLinks(["Home"]);
+    } else {
+      heroInViewRef = true;
+      setIsNotDefault(false);
+      setNavLinks([
+        "Home",
+        "Designs",
+        "Clients",
+        "Services",
+        "Testimonials",
+        "Scenography",
+      ]);
+    }
+  }, [location]);
 
   useEffect(() => {
     const hero = document.getElementById("home");
@@ -78,6 +94,17 @@ export default function Navigation() {
   }, []);
 
   const scrollToSection = (sectionId) => {
+    if (isNotDefault) {
+      setNavLinks([
+        "Home",
+        "Designs",
+        "Clients",
+        "Services",
+        "Testimonials",
+        "Scenography",
+      ]);
+      navigate("/");
+    }
     const el = document.getElementById(sectionId.toLowerCase());
     if (el) el.scrollIntoView({ behavior: "smooth" });
     setIsMobileMenuOpen(false);
@@ -117,7 +144,7 @@ export default function Navigation() {
               </div>
 
               <div className="hidden lg:flex items-center space-x-8">
-                {NAV_LINKS.map((item) => (
+                {navLinks.map((item) => (
                   <button
                     key={item}
                     onClick={() => scrollToSection(item)}
@@ -174,7 +201,7 @@ export default function Navigation() {
           />
           <div className="fixed top-20 left-4 right-4 bg-background border border-gray-200 rounded-2xl p-6 shadow-xl">
             <div className="flex flex-col space-y-4">
-              {NAV_LINKS.map((item) => (
+              {navLinks.map((item) => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(item)}

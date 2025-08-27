@@ -36,14 +36,12 @@ const App = () => {
     <ReactLenis root options={{ lerp: 0.1, duration: 1.2, smoothWheel: true }}>
       <div ref={appRef} className="w-full min-h-screen bg-stone-50">
         <div className="page-content">
-          <Navigation />
           <Hero />
           <Designs />
           <Clients />
           <Services />
           <Testimonials />
           <Scenography />
-          <Contact />
         </div>
       </div>
     </ReactLenis>
