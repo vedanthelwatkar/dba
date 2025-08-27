@@ -85,7 +85,7 @@ const PrivacyPolicy = () => {
               how your personal information is processed. If you do not agree
               with our policies and practices, please do not use our Services.
               If you still have any questions or concerns, please contact us at
-              contact@designsbyabhishek.com.
+              designsbyabhishek@gmail.com
             </p>
             <span className="text-body-2xl font-semibold text-neutral-800">
               SUMMARY OF KEY POINTS
@@ -513,7 +513,7 @@ const PrivacyPolicy = () => {
                 collected, we will take reasonable measures to promptly delete
                 such data. If you become aware of any data we may have collected
                 from children under age 18, please contact us at
-                contact@designsbyabhishek.com.
+                designsbyabhishek@gmail.com.
               </p>
             </div>
 
@@ -568,7 +568,7 @@ const PrivacyPolicy = () => {
               </p>
               <p>
                 If you have questions or comments about your privacy rights, you
-                may email us at contact@designsbyabhishek.com
+                may email us at designsbyabhishek@gmail.com
               </p>
             </div>
 
@@ -622,7 +622,7 @@ const PrivacyPolicy = () => {
               </span>
               <p>
                 If you have questions or comments about this notice, you may
-                email us at contact@designsbyabhishek.com or contact us by post
+                email us at designsbyabhishek@gmail.com or contact us by post
                 at:
               </p>
               <p>
@@ -650,8 +650,8 @@ const PrivacyPolicy = () => {
                 have the right to withdraw your consent to our processing of
                 your personal information. To request to review, update, or
                 delete your personal information, please email us at
-                contact@designsbyabhishek.com and we will respond promptly to
-                your request.
+                designsbyabhishek@gmail.com and we will respond promptly to your
+                request.
               </p>
             </div>
           </div>
