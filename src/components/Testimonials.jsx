@@ -11,7 +11,7 @@ const testimonials = [
     id: 1,
     text: "Abhishek, you lived up to our expectations and how! Bravo Bravo Bravo!! May SHE and He shower you with happiness and great success and may you make every family's wish come true. Your dedication is applaudable and I, as the eldest of the Karnani family, thank you profusely. May GOD bless you. I take a bow and offer our standing ovation.",
     name: "Mr. Umesh Karnani Ji",
-    title: "Mr. Karnani",
+    title: "Bride's Father",
     rating: 5,
   },
   {
@@ -61,6 +61,34 @@ const testimonials = [
     text: "The designs were customised and incorporated post the inputs from bride and the wedding pre-function was executed successfully in Maurya, Kamal Mahal. Outstanding designs and flawless execution ...stunning work thanks a ton.",
     name: "Mr. Srivastava",
     title: "MD, Rockland Group",
+    rating: 5,
+  },
+  {
+    id: 9,
+    text: "Magic is the word I would want to begin with. A treat for the photographer and a feast for selfie lovers. An unimaginable, beautifully decorated party hall in an unexpected time crunch situation. Every single guest adored the decor. A perfect combination of purity and elegance. Thank you so much Abhishek.",
+    name: "Pallavi Gupta",
+    title: "",
+    rating: 5,
+  },
+  {
+    id: 10,
+    text: "Abhishek did my engagement decor at Hyatt and everyone was just awestruck with the stage. It was nothing like we had seen before. Despite getting the banquet late, his team pulled off the entire thing on time. Abhishek was very supportive and helpful with all my queries and one can surely rely on his designs.",
+    name: "Sarab",
+    title: "",
+    rating: 5,
+  },
+  {
+    id: 11,
+    text: "Abhishek did a wonderful job with my wedding. The venue just looked spectacular and the appreciations poured in till much later… thank u for making our special day so beautiful!!",
+    name: "Runika Goyal",
+    title: "",
+    rating: 5,
+  },
+  {
+    id: 12,
+    text: "On the eve of my daughter’s wedding, my husband and I entered the banquet hall fifteen minutes before the baraat was to arrive. We both looked at the decor and smiled, then we looked at each other and smiled. In short, Abhishek has real style. He truly outdid himself at my daughter’s wedding by creating a romantic and elegant ambience. An ambience that emitted sheer joy. Abhishek created magic and all our guests were absorbed in its spell. His staff was disciplined and well mannered. Everything was efficiently managed. I wholeheartedly recommend Abhishe for any wedding decoration.",
+    name: "Priti Kakkar",
+    title: "",
     rating: 5,
   },
 ];
@@ -216,10 +244,6 @@ export default function Testimonials() {
                 key={testimonial.id}
                 className="flex-shrink-0 w-96 bg-white/10 backdrop-blur-lg p-8 rounded-lg border border-white/20"
               >
-                <div className="flex justify-center mb-6">
-                  {renderStars(testimonial.rating)}
-                </div>
-
                 <p className="text-white text-center mb-6 leading-relaxed font-cormorant text-lg italic">
                   "{testimonial.text}"
                 </p>
@@ -233,15 +257,15 @@ export default function Testimonials() {
               </div>
             ))}
           </div>
-          <div
-            ref={scenographyRef}
-            className="absolute bottom-0 left-1/2 -translate-x-1/2 pointer-events-none 
-             text-nyghtserif2 font-nyghtserif tracking-tight text-center z-[5]"
-            style={{ fontSize: "clamp(2rem, 10vw, 7rem)", lineHeight: 1 }}
-          >
-            Scenography
-          </div>
         </div>
+      </div>
+      <div
+        ref={scenographyRef}
+        className="absolute bottom-0 left-1/2 -translate-x-1/2 pointer-events-none 
+            text-nyghtserif2 font-nyghtserif tracking-tight text-center z-0"
+        style={{ fontSize: "clamp(2rem, 8vw, 6rem)", lineHeight: 1 }}
+      >
+        Scenography
       </div>
     </section>
   );

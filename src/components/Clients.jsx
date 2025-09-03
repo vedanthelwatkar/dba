@@ -7,32 +7,39 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const clientLogos = [
-  { src: "/clients/amp-motors-arigatoevents.png", name: "AMP Motors" },
-  { src: "/clients/anju-modi-arigatoevents.png", name: "Anju Modi" },
-  { src: "/clients/being-human-arigatoevents.png", name: "Being Human" },
-  { src: "/clients/blackberrys-arigatoevents.png", name: "Blackberrys" },
-  { src: "/clients/dollar-group-arigatoevents.png", name: "Dollar Group" },
-  { src: "/clients/dyp-group-arigatoevents.png", name: "DYP Group" },
+  { src: "/clients/amp-motors-designsbyabhishek.png", name: "AMP Motors" },
+  { src: "/clients/anju-modi-designsbyabhishek.png", name: "Anju Modi" },
+  { src: "/clients/being-human-designsbyabhishek.png", name: "Being Human" },
+  { src: "/clients/blackberrys-designsbyabhishek.png", name: "Blackberrys" },
+  { src: "/clients/dollar-group-designsbyabhishek.png", name: "Dollar Group" },
+  { src: "/clients/dyp-group-designsbyabhishek.png", name: "DYP Group" },
   {
-    src: "/clients/manish-malhotra-arigatoevents.png",
+    src: "/clients/manish-malhotra-designsbyabhishek.png",
     name: "Manish Malhotra",
   },
-  { src: "/clients/muthoot-group-arigatoevents.png", name: "Muthoot Group" },
-  { src: "/clients/punj-lloyd-arigatoevents.png", name: "Punj Lloyd" },
-  { src: "/clients/rahul-mishra-arigatoevents.png", name: "Rahul Mishra" },
   {
-    src: "/clients/rockland-hospitals-arigatoevents.png",
+    src: "/clients/bhuvneshwarkumar-and-nupurnagar-designsbyabhishek.png",
+    name: "Bhuvneshwar Kumar and Nupur Nagar",
+  },
+  {
+    src: "/clients/muthoot-group-designsbyabhishek.png",
+    name: "Muthoot Group",
+  },
+  { src: "/clients/punj-lloyd-designsbyabhishek.png", name: "Punj Lloyd" },
+  { src: "/clients/rahul-mishra-designsbyabhishek.png", name: "Rahul Mishra" },
+  {
+    src: "/clients/rockland-hospitals-designsbyabhishek.png",
     name: "Rockland Hospitals",
   },
-  { src: "/clients/sabyasachi-arigatoevents.png", name: "Sabyasachi" },
+  { src: "/clients/sabyasachi-designsbyabhishek.jpg", name: "Sabyasachi" },
   {
-    src: "/clients/sanjay-ghodawat-arigatoevents.webp",
+    src: "/clients/sanjay-ghodawat-designsbyabhishek.webp",
     name: "Sanjay Ghodawat Group",
   },
-  { src: "/clients/somany-arigatoevents.png", name: "Somany Tiles" },
-  { src: "/clients/suneet-varma-arigatoevents.png", name: "Suneet Varma" },
+  { src: "/clients/somany-designsbyabhishek.png", name: "Somany Tiles" },
+  { src: "/clients/suneet-varma-designsbyabhishek.png", name: "Suneet Varma" },
   {
-    src: "/clients/yuvraj-and-hazel-arigatoevents.png",
+    src: "/clients/yuvraj-and-hazel-designsbyabhishek.png",
     name: "Yuvraj & Hazel",
   },
 ];
@@ -169,7 +176,7 @@ const PremiumCarousel = () => {
   const duplicatedLogos = [...clientLogos, ...clientLogos, ...clientLogos];
 
   return (
-    <section id="clients" className="py-40 overflow-hidden">
+    <section id="clients" className="pt-10 pb-20 overflow-hidden">
       <div className="text-center mb-24 px-6">
         <h2 className="text-4xl md:text-5xl font-nyghtserif mb-4">
           Trusted by Industry Leaders

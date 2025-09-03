@@ -150,7 +150,14 @@ export default function Services() {
           </div>
 
           <div className="max-w-2xl mx-auto">
-            <button className="px-8 py-3 border border-stone-300 rounded-full text-stone-700 hover:bg-stone-100 transition-colors duration-300">
+            <button
+              className="px-8 py-3 border border-stone-300 rounded-full text-stone-700 hover:bg-stone-100 transition-colors duration-300"
+              onClick={() => {
+                document
+                  .getElementById("contact")
+                  ?.scrollIntoView({ behavior: "smooth" });
+              }}
+            >
               Let's get started
             </button>
           </div>

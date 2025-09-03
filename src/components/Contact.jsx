@@ -11,6 +11,18 @@ import PinterestIcon from "@/svgComponents/PinterestIcon";
 import QR from "@/svgComponents/QR";
 import WhatsappIcon from "@/svgComponents/WhatsappIcon";
 
+import { Card, CardContent } from "@/components/ui/card";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import * as React from "react";
+import { Button } from "@/components/ui/button";
+import { X, ArrowLeft, ArrowRight } from "lucide-react";
+
 const Contact = () => {
   const navLinks = [
     {
@@ -54,6 +66,86 @@ const Contact = () => {
       icon: <InstagramIcon color="#211C1D" />,
     },
   ];
+
+  const mediaItems = [
+    {
+      src: "/media/media-1-designsbyabhishek.jpg",
+      alt: "Media 1",
+    },
+    {
+      src: "/media/media-2-designsbyabhishek.jpg",
+      alt: "Media 2",
+    },
+    {
+      src: "/media/media-3-designsbyabhishek.jpg",
+      alt: "Media 3",
+    },
+    {
+      src: "/media/media-4-designsbyabhishek.jpg",
+      alt: "Media 4",
+    },
+    {
+      src: "/media/media-5-designsbyabhishek.jpg",
+      alt: "Media 5",
+    },
+    {
+      src: "/media/media-6-designsbyabhishek.jpg",
+      alt: "Media 6",
+    },
+    {
+      src: "/media/media-7-designsbyabhishek.jpg",
+      alt: "Media 7",
+    },
+    {
+      src: "/media/media-8-designsbyabhishek.jpg",
+      alt: "Media 8",
+    },
+    {
+      src: "/media/media-9-designsbyabhishek.jpg",
+      alt: "Media 9",
+    },
+    {
+      src: "/media/media-10-designsbyabhishek.jpg",
+      alt: "Media 10",
+    },
+    {
+      src: "/media/media-11-designsbyabhishek.jpg",
+      alt: "Media 11",
+    },
+    {
+      src: "/media/media-12-designsbyabhishek.jpg",
+      alt: "Media 12",
+    },
+  ];
+
+  const [lightboxOpen, setLightboxOpen] = React.useState(false);
+  const [activeIndex, setActiveIndex] = React.useState(0);
+
+  const openLightbox = (index) => {
+    setActiveIndex(index);
+    setLightboxOpen(true);
+  };
+
+  const closeLightbox = () => setLightboxOpen(false);
+
+  const prevItem = React.useCallback(() => {
+    setActiveIndex((i) => (i - 1 + mediaItems.length) % mediaItems.length);
+  }, []);
+
+  const nextItem = React.useCallback(() => {
+    setActiveIndex((i) => (i + 1) % mediaItems.length);
+  }, []);
+
+  React.useEffect(() => {
+    if (!lightboxOpen) return;
+    const onKey = (e) => {
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowLeft") prevItem();
+      if (e.key === "ArrowRight") nextItem();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [lightboxOpen, prevItem, nextItem]);
 
   return (
     <section
@@ -105,15 +197,33 @@ const Contact = () => {
                 ))}
               </div>
 
-              {/* QR Code Section - Responsive */}
-              <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 p-4 rounded-xl">
-                <div className="flex-shrink-0 self-center sm:self-start">
-                  <QR />
+              {/* Instagram Embed - Responsive */}
+              <div className="bg-burnt/10 rounded-2xl lg:rounded-3xl p-4 sm:p-6 lg:p-8">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 lg:mb-6 space-y-2 sm:space-y-0">
+                  <h3 className="text-xl sm:text-2xl font-nyghtserif text-nyghtserif2 text-center sm:text-left">
+                    Follow Our Work
+                  </h3>
+                  <a
+                    href="https://instagram.com/designsbyabhishek"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-nyghtserif2 hover:text-black transition-colors font-nyghtserif text-center sm:text-right"
+                  >
+                    @designsbyabhishek
+                  </a>
                 </div>
-                <span className="text-sm sm:text-base text-center sm:text-left font-cormorant">
-                  Scan the QR code to connect with our expert instantly on
-                  Whatsapp
-                </span>
+
+                <div className="relative w-full h-64 sm:h-80 rounded-xl lg:rounded-2xl overflow-hidden bg-background">
+                  <iframe
+                    src="https://www.instagram.com/designsbyabhishek/embed"
+                    className="w-full h-full"
+                    frameBorder="0"
+                    scrolling="no"
+                    allowTransparency="true"
+                    title="Instagram Feed - @designsbyabhishek"
+                    loading="lazy"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -180,61 +290,120 @@ const Contact = () => {
               </nav>
             </div>
 
-            {/* Promotional Card - Responsive */}
-            <div className="border-2 border-dashed border-black/20 rounded-2xl lg:rounded-3xl p-4 sm:p-6 lg:p-8">
-              <div className="flex flex-col sm:flex-row sm:items-start space-y-4 sm:space-y-0 sm:space-x-6">
-                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-amber-100 rounded-full flex items-center justify-center flex-shrink-0 self-center sm:self-start">
-                  <svg
-                    className="w-6 h-6 sm:w-8 sm:h-8 text-amber-600"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                  </svg>
-                </div>
-                <div className="flex-1 text-center sm:text-left">
-                  <p className="text-nyghtserif2 font-cormorant text-base sm:text-lg mb-3">
-                    Need premium event design services? Explore our extensive
-                    portfolio for luxury events and celebrations!
-                  </p>
-                  <a
-                    href="#portfolio"
-                    className="text-nyghtserif2 font-nyghtserif text-base sm:text-lg underline hover:no-underline transition-all"
-                  >
-                    View now
-                  </a>
-                </div>
+            {/* QR Code Section - Responsive */}
+            <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 p-4 rounded-xl">
+              <div className="flex-shrink-0 self-center sm:self-start">
+                <QR />
               </div>
+              <span className="text-sm sm:text-base text-center sm:text-left font-cormorant">
+                Scan the QR code to connect with our expert instantly on
+                Whatsapp
+              </span>
             </div>
 
-            {/* Instagram Embed - Responsive */}
-            <div className="bg-burnt/10 rounded-2xl lg:rounded-3xl p-4 sm:p-6 lg:p-8">
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 lg:mb-6 space-y-2 sm:space-y-0">
-                <h3 className="text-xl sm:text-2xl font-nyghtserif text-nyghtserif2 text-center sm:text-left">
-                  Follow Our Work
-                </h3>
-                <a
-                  href="https://instagram.com/designsbyabhishek"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-nyghtserif2 hover:text-black transition-colors font-nyghtserif text-center sm:text-right"
+            <h3 className="text-2xl font-nyghtserif text-nyghtserif2">
+              Media Coverage
+            </h3>
+
+            <div className="w-full">
+              <Carousel className="w-full">
+                <CarouselContent>
+                  {mediaItems.map((item, index) => (
+                    <CarouselItem key={index}>
+                      <div className="p-1">
+                        <Card>
+                          <CardContent className="p-0">
+                            <button
+                              type="button"
+                              onClick={() => openLightbox(index)}
+                              className="block w-full"
+                              aria-label={`Open media coverage: ${item.alt}`}
+                            >
+                              <div className="w-full aspect-video overflow-hidden rounded-xl">
+                                <img
+                                  src={item.src || "/placeholder.svg"}
+                                  alt={item.alt}
+                                  className="w-full h-full object-cover"
+                                  loading="lazy"
+                                  decoding="async"
+                                />
+                              </div>
+                            </button>
+                          </CardContent>
+                        </Card>
+                      </div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious />
+                <CarouselNext />
+              </Carousel>
+            </div>
+
+            {lightboxOpen && (
+              <div
+                className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-2 sm:p-4"
+                role="dialog"
+                aria-modal="true"
+                aria-label="Media coverage viewer"
+                onClick={closeLightbox}
+              >
+                <div
+                  className="relative w-full max-w-5xl max-h-[80vh] flex flex-col overflow-hidden"
+                  onClick={(e) => e.stopPropagation()}
                 >
-                  @designsbyabhishek
-                </a>
-              </div>
+                  {/* Close button */}
+                  <Button
+                    variant="secondary"
+                    size="icon"
+                    onClick={closeLightbox}
+                    className="absolute right-2 top-2 z-10 rounded-full"
+                    aria-label="Close viewer"
+                  >
+                    <X className="h-5 w-5 text-white" />
+                  </Button>
 
-              <div className="relative w-full h-64 sm:h-80 rounded-xl lg:rounded-2xl overflow-hidden bg-background">
-                <iframe
-                  src="https://www.instagram.com/designsbyabhishek/embed"
-                  className="w-full h-full"
-                  frameBorder="0"
-                  scrolling="no"
-                  allowTransparency="true"
-                  title="Instagram Feed - @designsbyabhishek"
-                  loading="lazy"
-                />
+                  {/* Prev button */}
+                  <Button
+                    variant="secondary"
+                    size="icon"
+                    onClick={prevItem}
+                    className="absolute left-2 top-1/2 -translate-y-1/2 z-10 rounded-full"
+                    aria-label="Previous"
+                  >
+                    <ArrowLeft className="h-5 w-5 text-white" />
+                  </Button>
+
+                  {/* Next button */}
+                  <Button
+                    variant="secondary"
+                    size="icon"
+                    onClick={nextItem}
+                    className="absolute right-2 top-1/2 -translate-y-1/2 z-10 rounded-full"
+                    aria-label="Next"
+                  >
+                    <ArrowRight className="h-5 w-5 text-white" />
+                  </Button>
+
+                  {/* Image */}
+                  <div className="w-full flex-1 overflow-hidden">
+                    <img
+                      src={mediaItems[activeIndex].src || "/placeholder.svg"}
+                      alt={mediaItems[activeIndex].alt}
+                      className="w-full h-full object-contain rounded-xl"
+                      loading="eager"
+                    />
+                  </div>
+
+                  {/* Actions */}
+                  <div className="mt-4 flex items-center justify-between gap-3 shrink-0">
+                    <div className="text-sm text-white">
+                      {mediaItems[activeIndex].alt}
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
 

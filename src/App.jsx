@@ -12,6 +12,7 @@ import Clients from "./components/Clients";
 import Contact from "./components/Contact";
 import Testimonials from "./components/Testimonials";
 import Navigation from "./components/Navigation";
+import ScrollToHash from "./components/ScrollToHash";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -35,6 +36,7 @@ const App = () => {
   return (
     <ReactLenis root options={{ lerp: 0.1, duration: 1.2, smoothWheel: true }}>
       <div ref={appRef} className="w-full min-h-screen bg-stone-50">
+        <ScrollToHash />
         <div className="page-content">
           <Hero />
           <Designs />

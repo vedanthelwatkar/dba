@@ -226,16 +226,16 @@ const Designs = () => {
               <div
                 ref={craftingTextRef}
                 className="font-nyghtserif text-nyghtserif2 tracking-tight leading-tight"
-                style={{ fontSize: "clamp(2rem, 8vw, 6rem)" }}
+                style={{ fontSize: "clamp(2rem, 6.5vw, 6rem)" }}
               >
                 Crafting Elegance
               </div>
               <div
                 ref={yearTextRef}
-                className="font-nyghtserif italic text-nyghtserif2 tracking-tight leading-tight mt-6 md:mt-8"
+                className="font-nyghtserif text-nyghtserif2 tracking-tight leading-tight mt-6 md:mt-8"
                 style={{ fontSize: "clamp(1.5rem, 6vw, 3rem)" }}
               >
-                Since 15 Years
+                Since 15+ Years
               </div>
             </div>
           </div>
@@ -259,7 +259,7 @@ const Designs = () => {
         </div>
         <div
           ref={designsRef}
-          className="absolute bottom-4 md:bottom-0 left-1/2 -translate-x-1/2 max-w-xl z-30 pointer-events-none text-nyghtserif font-cormorant tracking-tight text-center text-sm md:text-md lg:text-lg xl:text-xl px-4"
+          className="absolute bottom-4 md:bottom-0 left-1/2 -translate-x-1/2 max-w-md lg:max-w-lg z-30 pointer-events-none text-nyghtserif font-cormorant tracking-tight text-center text-sm md:text-md lg:text-lg xl:text-xl px-4"
         >
           Where luxury meets artistry, and every celebration becomes an
           unforgettable masterpiece — crafted with passion, precision, and
