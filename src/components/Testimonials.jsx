@@ -261,11 +261,11 @@ export default function Testimonials() {
       </div>
       <div
         ref={scenographyRef}
-        className="absolute bottom-0 left-1/2 -translate-x-1/2 pointer-events-none 
+        className="absolute bottom-0 left-1/2 w-full -translate-x-1/2 pointer-events-none 
             text-nyghtserif2 font-nyghtserif tracking-tight text-center z-0"
         style={{ fontSize: "clamp(2rem, 8vw, 6rem)", lineHeight: 1 }}
       >
-        Scenography
+        Production and Execution
       </div>
     </section>
   );

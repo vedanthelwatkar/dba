@@ -12,7 +12,7 @@ const Designs = () => {
   const yearTextRef = useRef(null);
 
   const items = [
-    { src: "/haldi-event-designsbyabhishek.jpg" },
+    { src: "/luxury-seating-setup-designsbyabhishek.jpg" },
     { src: "/grand-sangeet-decoration-designsbyabhishek.jpg" },
     { src: "/musical-setup-designsbyabhishek.jpg" },
     { src: "/haldi-decoration-designsbyabhishek.jpg" },
