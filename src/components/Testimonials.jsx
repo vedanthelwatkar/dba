@@ -265,7 +265,7 @@ export default function Testimonials() {
             text-nyghtserif2 font-nyghtserif tracking-tight text-center z-0"
         style={{ fontSize: "clamp(2rem, 8vw, 6rem)", lineHeight: 1 }}
       >
-        Production and Execution
+        Scenography
       </div>
     </section>
   );

@@ -75,12 +75,12 @@ const Contact = () => {
 
   const mediaItems = [
     {
-      src: "/media/media-6-designsbyabhishek.jpg",
-      alt: "Media 6",
-    },
-    {
       src: "/media/media-7-designsbyabhishek.jpg",
       alt: "Media 7",
+    },
+    {
+      src: "/media/media-6-designsbyabhishek.jpg",
+      alt: "Media 6",
     },
     {
       src: "/media/media-8-designsbyabhishek.jpg",
@@ -365,7 +365,7 @@ const Contact = () => {
                   href="#scenography"
                   className="block text-nyghtserif2 hover:text-black font-cormorant text-base lg:text-lg transition-colors py-1"
                 >
-                  Production and Execution
+                  Scenography
                 </a>
                 <a
                   href="#clients"

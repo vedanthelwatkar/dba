@@ -124,12 +124,17 @@ export default function Navigation() {
           <div className="px-6 py-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-3">
-                <button
+                <a
+                  href="tel:+919356666644"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label="Call"
-                  className="w-12 h-12 bg-nyghtserif hover:bg-burnt/50 rounded-full flex items-center justify-center transition-all duration-300"
+                  className="w-12 h-12 bg-nyghtserif hover:bg-burnt/50
+                  rounded-full flex items-center justify-center transition-all
+                  duration-300"
                 >
                   <CallIcon />
-                </button>
+                </a>
                 <a
                   href="https://wa.me/919356666644"
                   target="_blank"
