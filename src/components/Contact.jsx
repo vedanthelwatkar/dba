@@ -347,37 +347,31 @@ const Contact = () => {
                   href="#designs"
                   className="block text-nyghtserif2 hover:text-black font-cormorant text-base lg:text-lg transition-colors py-1"
                 >
-                  Our Process
+                  Designs
                 </a>
                 <a
                   href="#services"
                   className="block text-nyghtserif2 hover:text-black font-cormorant text-base lg:text-lg transition-colors py-1"
                 >
-                  Reviews
+                  Services
                 </a>
                 <a
                   href="#testimonials"
                   className="block text-nyghtserif2 hover:text-black font-cormorant text-base lg:text-lg transition-colors py-1"
                 >
-                  About
+                  Testimonials
                 </a>
                 <a
                   href="#scenography"
                   className="block text-nyghtserif2 hover:text-black font-cormorant text-base lg:text-lg transition-colors py-1"
                 >
-                  View portfolio
+                  Production and Execution
                 </a>
                 <a
                   href="#clients"
                   className="block text-nyghtserif2 hover:text-black font-cormorant text-base lg:text-lg transition-colors py-1"
                 >
-                  Showroom
-                </a>
-                <a
-                  href="#contact"
-                  className="block text-nyghtserif2 hover:text-black font-cormorant text-base lg:text-lg transition-colors py-1"
-                >
-                  FAQ
+                  Clients
                 </a>
                 <a
                   href="/privacy-policy"
