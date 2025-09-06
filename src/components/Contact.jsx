@@ -52,8 +52,8 @@ const Contact = () => {
       icon: <MailIcon color="#211C1D" />,
     },
     {
-      name: "+91 81787 59588",
-      href: "tel:+918178759588",
+      name: "+91 93566 66644",
+      href: "tel:+919356666644",
       icon: <CallIcon color="#211C1D" />,
     },
     {
@@ -75,26 +75,6 @@ const Contact = () => {
 
   const mediaItems = [
     {
-      src: "/media/media-1-designsbyabhishek.jpg",
-      alt: "Media 1",
-    },
-    {
-      src: "/media/media-2-designsbyabhishek.jpg",
-      alt: "Media 2",
-    },
-    {
-      src: "/media/media-3-designsbyabhishek.jpg",
-      alt: "Media 3",
-    },
-    {
-      src: "/media/media-4-designsbyabhishek.jpg",
-      alt: "Media 4",
-    },
-    {
-      src: "/media/media-5-designsbyabhishek.jpg",
-      alt: "Media 5",
-    },
-    {
       src: "/media/media-6-designsbyabhishek.jpg",
       alt: "Media 6",
     },
@@ -109,6 +89,22 @@ const Contact = () => {
     {
       src: "/media/media-9-designsbyabhishek.jpg",
       alt: "Media 9",
+    },
+    {
+      src: "/media/media-4-designsbyabhishek.jpg",
+      alt: "Media 4",
+    },
+    {
+      src: "/media/media-1-designsbyabhishek.jpg",
+      alt: "Media 1",
+    },
+    {
+      src: "/media/media-3-designsbyabhishek.jpg",
+      alt: "Media 3",
+    },
+    {
+      src: "/media/media-5-designsbyabhishek.jpg",
+      alt: "Media 5",
     },
   ];
 
