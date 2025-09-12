@@ -12,25 +12,25 @@ const Designs = () => {
   const yearTextRef = useRef(null);
 
   const items = [
-    { src: "/luxury-seating-setup-designsbyabhishek.jpg" },
     { src: "/grand-sangeet-decoration-designsbyabhishek.jpg" },
-    { src: "/musical-setup-designsbyabhishek.jpg" },
-    { src: "/haldi-decoration-designsbyabhishek.jpg" },
-    { src: "/sangeet-setup-designsbyabhishek.jpg" },
-    { src: "/haldi-floral-decoration-designsbyabhishek.jpg" },
     { src: "/wedding-hall-decoration-designsbyabhishek.jpg" },
-    { src: "/wedding-mandap-decoration-designsbyabhishek.jpg" },
+    { src: "/tunnel-decor-designsbyabhishek.jpg" },
+    { src: "/chandelier-decor-designsbyabhishek.jpg" },
+    { src: "/indoor-floral-decor-designsbyabhishek.jpg" },
+    { src: "/haldi-floral-decoration-designsbyabhishek.jpg" },
+    { src: "/indoor-seating-designsbyabhishek.jpeg" },
+    { src: "/night-chandelier-designsbyabhishek.jpg" },
   ];
 
   const itemsNew = [
-    { src: "/bride-entry-setup-designsbyabhishek.jpg" },
-    { src: "/floral-decoration-designsbyabhishek.jpg" },
     { src: "/indoor-decoration-designsbyabhishek.jpg" },
-    { src: "/night-decor-designsbyabhishek.jpg" },
-    { src: "/outside-wedding-setup-designsbyabhishek.jpg" },
-    { src: "/reception-floral-tunnel-designsbyabhishek.jpg" },
-    { src: "/sangeet-stage-light-designsbyabhishek.jpg" },
+    { src: "/indoor-chandelier-designsbyabhishek.jpg" },
+    { src: "/floral-decor-designsbyabhishek.jpg" },
     { src: "/wedding-setup-designsbyabhishek.jpg" },
+    { src: "/wedding-setup-2-designsbyabhishek.jpg" },
+    { src: "/warmup-dinner-designsbyabhishek.jpg" },
+    { src: "/outdoor-setup-designsbyabhishek.jpg" },
+    { src: "/entry-decor-designsbyabhishek.jpeg" },
   ];
 
   useEffect(() => {
@@ -212,7 +212,7 @@ const Designs = () => {
                   src={item.src || "/placeholder.svg"}
                   alt="Design"
                   className="max-w-full h-auto object-cover"
-                  style={{ minHeight: "180px" }}
+                  style={{ minHeight: "250px",maxHeight:"300px" }}
                   loading="lazy"
                   decoding="async"
                   fetchPriority={index < 2 ? "high" : "low"}
@@ -248,7 +248,7 @@ const Designs = () => {
                   src={item.src || "/placeholder.svg"}
                   alt="Design"
                   className="max-w-full h-auto object-cover"
-                  style={{ minHeight: "180px" }}
+                  style={{ minHeight: "250px", maxHeight:"300px" }}
                   loading="lazy"
                   decoding="async"
                   fetchPriority={index < 2 ? "high" : "low"}

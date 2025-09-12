@@ -79,6 +79,18 @@ const Contact = () => {
       alt: "Media 7",
     },
     {
+      src: "/media/media-11-designsbyabhishek.jpg",
+      alt: "Media 11",
+    },
+    {
+      src: "/media/media-9-designsbyabhishek.jpg",
+      alt: "Media 9",
+    },
+    {
+      src: "/media/media-10-designsbyabhishek.jpg",
+      alt: "Media 10",
+    },
+    {
       src: "/media/media-6-designsbyabhishek.jpg",
       alt: "Media 6",
     },
@@ -87,12 +99,12 @@ const Contact = () => {
       alt: "Media-8",
     },
     {
-      src: "/media/media-9-designsbyabhishek.jpg",
-      alt: "Media 9",
-    },
-    {
       src: "/media/media-4-designsbyabhishek.jpg",
       alt: "Media 4",
+    },
+    {
+      src: "/media/media-5-designsbyabhishek.jpg",
+      alt: "Media 5",
     },
     {
       src: "/media/media-1-designsbyabhishek.jpg",
@@ -103,8 +115,16 @@ const Contact = () => {
       alt: "Media 3",
     },
     {
-      src: "/media/media-5-designsbyabhishek.jpg",
-      alt: "Media 5",
+      src: "/media/media-12-designsbyabhishek.jpg",
+      alt: "Media 12",
+    },
+    {
+      src: "/media/media-13-designsbyabhishek.jpg",
+      alt: "Media 13",
+    },
+    {
+      src: "/media/media-14-designsbyabhishek.jpg",
+      alt: "Media 14",
     },
   ];
 
@@ -261,7 +281,7 @@ const Contact = () => {
               <img
                 src="/luxury-haldi-event-designsbyabhishek.jpg"
                 alt="Designs by Abhishek Setup"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain"
                 loading="lazy"
                 decoding="async"
               />
@@ -422,7 +442,7 @@ const Contact = () => {
                                   <img
                                     src={item.src || "/placeholder.svg"}
                                     alt={item.alt}
-                                    className="w-full h-full object-cover"
+                                    className="w-full h-full object-contain"
                                     loading="lazy"
                                     decoding="async"
                                   />
