@@ -1,22 +1,27 @@
-"use client"
+"use client";
 
-import CallIcon from "@/svgComponents/CallIcon"
-import CopyrightIcon from "@/svgComponents/CopyrightIcon"
-import FacebookIcon from "@/svgComponents/FacebookIcon"
-import InstagramIcon from "@/svgComponents/InstagramIcon"
-import LinkedinIcon from "@/svgComponents/LinkedinIcon"
-import LocationIcon from "@/svgComponents/LocationIcon"
-import MailIcon from "@/svgComponents/MailIcon"
-import PinterestIcon from "@/svgComponents/PinterestIcon"
-import QR from "@/svgComponents/QR"
-import WhatsappIcon from "@/svgComponents/WhatsappIcon"
+import CallIcon from "@/svgComponents/CallIcon";
+import CopyrightIcon from "@/svgComponents/CopyrightIcon";
+import FacebookIcon from "@/svgComponents/FacebookIcon";
+import InstagramIcon from "@/svgComponents/InstagramIcon";
+import LinkedinIcon from "@/svgComponents/LinkedinIcon";
+import LocationIcon from "@/svgComponents/LocationIcon";
+import MailIcon from "@/svgComponents/MailIcon";
+import PinterestIcon from "@/svgComponents/PinterestIcon";
+import QR from "@/svgComponents/QR";
+import WhatsappIcon from "@/svgComponents/WhatsappIcon";
+import Youtube from "@/svgComponents/Youtube";
 
-import { Card, CardContent } from "@/components/ui/card"
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
-import * as React from "react"
-import { Button } from "@/components/ui/button"
-import { X, ArrowLeft, ArrowRight, ZoomIn, ZoomOut } from "lucide-react"
-import Youtube from "@/svgComponents/Youtube"
+import { Card, CardContent } from "@/components/ui/card";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import * as React from "react";
+import ImageModal from "./ImageModal";
 
 const Contact = () => {
   const navLinks = [
@@ -65,7 +70,7 @@ const Contact = () => {
       href: "https://www.youtube.com/@designsByAbhishek",
       icon: <Youtube color="#211C1D" />,
     },
-  ]
+  ];
 
   const mediaItems = [
     {
@@ -120,145 +125,33 @@ const Contact = () => {
       src: "/media/media-14-designsbyabhishek.jpg",
       alt: "Media 14",
     },
-  ]
+  ];
 
-  const [lightboxOpen, setLightboxOpen] = React.useState(false)
-  const [activeIndex, setActiveIndex] = React.useState(0)
-  const [zoomLevel, setZoomLevel] = React.useState(1)
-  const [panPosition, setPanPosition] = React.useState({ x: 0, y: 0 })
-  const [isDragging, setIsDragging] = React.useState(false)
-  const [dragStart, setDragStart] = React.useState({ x: 0, y: 0 })
+  const [lightboxOpen, setLightboxOpen] = React.useState(false);
+  const [activeIndex, setActiveIndex] = React.useState(0);
 
   const openLightbox = (index) => {
-    setActiveIndex(index)
-    setLightboxOpen(true)
-    setZoomLevel(1)
-    setPanPosition({ x: 0, y: 0 })
-    document.body.style.overflow = "hidden"
-    const navbar = document.querySelector("nav, header, .navbar")
-    if (navbar) {
-      navbar.style.display = "none"
-    }
-  }
+    setActiveIndex(index);
+    setLightboxOpen(true);
+  };
 
   const closeLightbox = () => {
-    setLightboxOpen(false)
-    setZoomLevel(1)
-    setPanPosition({ x: 0, y: 0 })
-    document.body.style.overflow = "unset"
-    const navbar = document.querySelector("nav, header, .navbar")
-    if (navbar) {
-      navbar.style.display = ""
-    }
-  }
+    setLightboxOpen(false);
+  };
 
   const prevItem = React.useCallback(() => {
-    setActiveIndex((i) => (i - 1 + mediaItems.length) % mediaItems.length)
-    setZoomLevel(1)
-    setPanPosition({ x: 0, y: 0 })
-  }, [])
+    setActiveIndex((i) => (i - 1 + mediaItems.length) % mediaItems.length);
+  }, []);
 
   const nextItem = React.useCallback(() => {
-    setActiveIndex((i) => (i + 1) % mediaItems.length)
-    setZoomLevel(1)
-    setPanPosition({ x: 0, y: 0 })
-  }, [])
-
-  const zoomIn = () => {
-    setZoomLevel((prev) => Math.min(prev + 0.5, 3))
-  }
-
-  const zoomOut = () => {
-    setZoomLevel((prev) => {
-      const newZoom = Math.max(prev - 0.5, 0.5)
-      if (newZoom <= 1) {
-        setPanPosition({ x: 0, y: 0 })
-      }
-      return newZoom
-    })
-  }
-
-  const resetZoom = () => {
-    setZoomLevel(1)
-    setPanPosition({ x: 0, y: 0 })
-  }
-
-  const handleMouseDown = (e) => {
-    if (zoomLevel > 1) {
-      setIsDragging(true)
-      setDragStart({
-        x: e.clientX - panPosition.x,
-        y: e.clientY - panPosition.y,
-      })
-    }
-  }
-
-  const handleMouseMove = (e) => {
-    if (isDragging && zoomLevel > 1) {
-      setPanPosition({
-        x: e.clientX - dragStart.x,
-        y: e.clientY - dragStart.y,
-      })
-    }
-  }
-
-  const handleMouseUp = () => {
-    setIsDragging(false)
-  }
-
-  const handleTouchStart = (e) => {
-    if (zoomLevel > 1) {
-      setIsDragging(true)
-      const touch = e.touches[0]
-      setDragStart({
-        x: touch.clientX - panPosition.x,
-        y: touch.clientY - panPosition.y,
-      })
-    }
-  }
-
-  const handleTouchMove = (e) => {
-    if (isDragging && zoomLevel > 1) {
-      e.preventDefault()
-      const touch = e.touches[0]
-      setPanPosition({
-        x: touch.clientX - dragStart.x,
-        y: touch.clientY - dragStart.y,
-      })
-    }
-  }
-
-  const handleTouchEnd = () => {
-    setIsDragging(false)
-  }
-
-  React.useEffect(() => {
-    if (!lightboxOpen) return
-    const onKey = (e) => {
-      if (e.key === "Escape") closeLightbox()
-      if (e.key === "ArrowLeft") prevItem()
-      if (e.key === "ArrowRight") nextItem()
-      if (e.key === "+" || e.key === "=") zoomIn()
-      if (e.key === "-") zoomOut()
-      if (e.key === "0") resetZoom()
-    }
-    window.addEventListener("keydown", onKey)
-    return () => window.removeEventListener("keydown", onKey)
-  }, [lightboxOpen, prevItem, nextItem])
-
-  React.useEffect(() => {
-    if (isDragging) {
-      window.addEventListener("mousemove", handleMouseMove)
-      window.addEventListener("mouseup", handleMouseUp)
-      return () => {
-        window.removeEventListener("mousemove", handleMouseMove)
-        window.removeEventListener("mouseup", handleMouseUp)
-      }
-    }
-  }, [isDragging, dragStart, panPosition])
+    setActiveIndex((i) => (i + 1) % mediaItems.length);
+  }, []);
 
   return (
-    <section id="contact" className="min-h-screen bg-background text-nyghtserif2 pt-20 relative overflow-hidden">
+    <section
+      id="contact"
+      className="min-h-screen bg-background text-nyghtserif2 pt-20 relative overflow-hidden"
+    >
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <h1 className="text-[8rem] sm:text-[12rem] md:text-[16rem] lg:text-[20rem] text-center font-nyghtserif text-black/5 select-none leading-none">
           DESIGNS BY ABHISHEK
@@ -309,7 +202,8 @@ const Contact = () => {
                     <QR />
                   </div>
                   <span className="text-sm sm:text-base text-center sm:text-left font-cormorant text-nyghtserif2">
-                    Scan the QR code to connect with our expert instantly on Whatsapp
+                    Scan the QR code to connect with our expert instantly on
+                    Whatsapp
                   </span>
                 </div>
               </div>
@@ -410,7 +304,9 @@ const Contact = () => {
             </div> */}
 
             <div className="flex-1">
-              <h3 className="text-2xl font-nyghtserif text-nyghtserif2 mb-6 lg:mb-8">Media Coverage</h3>
+              <h3 className="text-2xl font-nyghtserif text-nyghtserif2 mb-6 lg:mb-8">
+                Media Coverage
+              </h3>
 
               <div className="w-full h-full">
                 <Carousel className="w-full h-full">
@@ -453,7 +349,9 @@ const Contact = () => {
         <div className="mt-12 lg:mt-20 pt-8 lg:pt-12 border-t border-black/10 mb-6 lg:mb-10">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-6 lg:space-y-0">
             <div className="text-center lg:text-left">
-              <h3 className="text-2xl sm:text-3xl font-nyghtserif text-nyghtserif2 mb-2">1st Floor, Modi House,</h3>
+              <h3 className="text-2xl sm:text-3xl font-nyghtserif text-nyghtserif2 mb-2">
+                1st Floor, Modi House,
+              </h3>
               <p className="text-nyghtserif2 font-nyghtserif text-lg sm:text-xl">
                 Off Link Rd, Near Fun Republic, Mumbai, 400053
                 <br />
@@ -465,136 +363,24 @@ const Contact = () => {
 
         <div className="text-center lg:text-left">
           <span className="flex items-center justify-center lg:justify-start gap-1 font-cormorant text-nyghtserif2 mb-4">
-            <CopyrightIcon color="#211C1D" /> {new Date().getFullYear()} Designs By Abhishek
+            <CopyrightIcon color="#211C1D" /> {new Date().getFullYear()} Designs
+            By Abhishek
           </span>
         </div>
       </div>
 
-      {lightboxOpen && (
-        <div
-          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/90 p-4"
-          role="dialog"
-          aria-modal="true"
-          aria-label="Media coverage viewer"
-          onClick={closeLightbox}
-        >
-          <div
-            className="relative w-full h-full max-w-6xl max-h-[90vh] flex flex-col bg-black rounded-lg overflow-hidden"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="absolute top-4 left-4 right-4 z-10 flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <Button
-                  variant="secondary"
-                  size="icon"
-                  onClick={zoomOut}
-                  className="rounded-full bg-black/50 hover:bg-black/70 border-white/20"
-                  aria-label="Zoom out"
-                  disabled={zoomLevel <= 0.5}
-                >
-                  <ZoomOut className="h-4 w-4 text-white" />
-                </Button>
-                <span className="text-white text-sm bg-black/50 px-3 py-1 rounded-full">
-                  {Math.round(zoomLevel * 100)}%
-                </span>
-                <Button
-                  variant="secondary"
-                  size="icon"
-                  onClick={zoomIn}
-                  className="rounded-full bg-black/50 hover:bg-black/70 border-white/20"
-                  aria-label="Zoom in"
-                  disabled={zoomLevel >= 3}
-                >
-                  <ZoomIn className="h-4 w-4 text-white" />
-                </Button>
-                <Button
-                  variant="secondary"
-                  size="sm"
-                  onClick={resetZoom}
-                  className="rounded-full bg-black/50 hover:bg-black/70 border-white/20 text-white text-xs"
-                  aria-label="Reset zoom"
-                >
-                  Reset
-                </Button>
-              </div>
-
-              <Button
-                variant="secondary"
-                size="icon"
-                onClick={closeLightbox}
-                className="rounded-full bg-black/50 hover:bg-black/70 border-white/20"
-                aria-label="Close viewer"
-              >
-                <X className="h-5 w-5 text-white" />
-              </Button>
-            </div>
-
-            <Button
-              variant="secondary"
-              size="icon"
-              onClick={prevItem}
-              className="absolute left-4 top-1/2 -translate-y-1/2 z-10 rounded-full bg-black/50 hover:bg-black/70 border-white/20"
-              aria-label="Previous"
-            >
-              <ArrowLeft className="h-5 w-5 text-white" />
-            </Button>
-
-            <Button
-              variant="secondary"
-              size="icon"
-              onClick={nextItem}
-              className="absolute right-4 top-1/2 -translate-y-1/2 z-10 rounded-full bg-black/50 hover:bg-black/70 border-white/20"
-              aria-label="Next"
-            >
-              <ArrowRight className="h-5 w-5 text-white" />
-            </Button>
-
-            <div className="w-full h-full flex items-center justify-center overflow-hidden">
-              <div
-                className="w-full h-full flex items-center justify-center overflow-hidden"
-                style={{
-                  cursor: zoomLevel > 1 ? (isDragging ? "grabbing" : "grab") : "default",
-                }}
-                onMouseDown={handleMouseDown}
-                onTouchStart={handleTouchStart}
-                onTouchMove={handleTouchMove}
-                onTouchEnd={handleTouchEnd}
-              >
-                <img
-                  src={mediaItems[activeIndex].src || "/placeholder.svg"}
-                  alt={mediaItems[activeIndex].alt}
-                  className="transition-transform duration-200 ease-out select-none"
-                  style={{
-                    transform: `scale(${zoomLevel}) translate(${
-                      panPosition.x / zoomLevel
-                    }px, ${panPosition.y / zoomLevel}px)`,
-                    maxWidth: "100%",
-                    maxHeight: "100%",
-                    width: "auto",
-                    height: "auto",
-                    objectFit: "contain",
-                  }}
-                  loading="eager"
-                  draggable={false}
-                />
-              </div>
-            </div>
-
-            <div className="absolute bottom-4 left-4 right-4 z-10">
-              <div className="flex items-center justify-between">
-                <div className="text-sm text-white bg-black/50 px-3 py-2 rounded-full">
-                  {mediaItems[activeIndex].alt}
-                </div>
-                <div className="text-sm text-white bg-black/50 px-3 py-2 rounded-full">
-                  {activeIndex + 1} / {mediaItems.length}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      <ImageModal
+        isOpen={lightboxOpen}
+        onClose={closeLightbox}
+        images={mediaItems}
+        activeIndex={activeIndex}
+        onPrevious={prevItem}
+        onNext={nextItem}
+        showNavigation={true}
+        title="Media Coverage"
+      />
     </section>
-  )
-}
+  );
+};
 
-export default Contact
+export default Contact;

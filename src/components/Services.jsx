@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import ImageModal from "./ImageModal";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -10,6 +11,11 @@ export default function Services() {
   const sectionRef = useRef(null);
   const titleRef = useRef(null);
   const servicesRef = useRef([]);
+
+  const [modalOpen, setModalOpen] = useState(false);
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const [currentImages, setCurrentImages] = useState([]);
+  const [carouselIndex, setCarouselIndex] = useState(0);
 
   const serviceData = [
     {
@@ -38,9 +44,60 @@ export default function Services() {
       subtitle: "Creating Lasting Memories",
       description:
         "From immersive 3D concepts to stunningly executed event layouts, we bring imagination to life. Our creative designs help you visualize the celebration even before it unfolds, ensuring perfection in planning and delivery.",
-      image: "/3D-modelling-designsbyabhishek.jpg",
+      images: [
+        "/3D-modelling-3-designsbyabhishek.jpg",
+        "/3D-modelling-designsbyabhishek.jpg",
+        "/3D-modelling-2-designsbyabhishek.jpg",
+        "/event-layout-designsbyabhishek.jpg",
+        "/concept-design-designsbyabhishek.jpg",
+      ],
     },
   ];
+
+  const openSingleImageModal = (imageSrc, title) => {
+    setCurrentImages([{ src: imageSrc, alt: title }]);
+    setActiveImageIndex(0);
+    setModalOpen(true);
+  };
+
+  const openCarouselModal = (images, startIndex = 0) => {
+    setCurrentImages(
+      images.map((src, index) => ({
+        src,
+        alt: `3D Design ${index + 1}`,
+      }))
+    );
+    setActiveImageIndex(startIndex);
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
+  const handlePrevious = () => {
+    setActiveImageIndex((prev) =>
+      prev === 0 ? currentImages.length - 1 : prev - 1
+    );
+  };
+
+  const handleNext = () => {
+    setActiveImageIndex((prev) =>
+      prev === currentImages.length - 1 ? 0 : prev + 1
+    );
+  };
+
+  const handleCarouselPrev = () => {
+    setCarouselIndex((prev) =>
+      prev === 0 ? serviceData[3].images.length - 1 : prev - 1
+    );
+  };
+
+  const handleCarouselNext = () => {
+    setCarouselIndex((prev) =>
+      prev === serviceData[3].images.length - 1 ? 0 : prev + 1
+    );
+  };
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -64,27 +121,29 @@ export default function Services() {
       servicesRef.current.forEach((service, index) => {
         if (!service) return;
 
-        const image = service.querySelector(".service-image");
+        const images = service.querySelectorAll(".service-image");
         const content = service.querySelector(".service-content");
 
-        gsap.fromTo(
-          image,
-          {
-            clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)",
-            scale: 1.1, // Reduced scale for better performance
-          },
-          {
-            clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-            scale: 1,
-            duration: 1.2, // Reduced duration
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: image,
-              start: "top 80%",
-              toggleActions: "play none none reverse",
+        images.forEach((image, imgIndex) => {
+          gsap.fromTo(
+            image,
+            {
+              clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)",
+              scale: 1.1, // Reduced scale for better performance
             },
-          }
-        );
+            {
+              clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+              scale: 1,
+              duration: 1.2, // Reduced duration
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: image,
+                start: "top 80%",
+                toggleActions: "play none none reverse",
+              },
+            }
+          );
+        });
 
         const tl = gsap.timeline({
           scrollTrigger: {
@@ -174,16 +233,109 @@ export default function Services() {
             >
               {/* Image Section */}
               <div className={`${index % 2 === 1 ? "lg:col-start-2" : ""}`}>
-                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
-                  <img
-                    src={service.image || "/placeholder.svg"}
-                    alt={service.title}
-                    className="service-image w-full h-full object-cover"
-                    loading="lazy" // Added image optimization attributes
-                    decoding="async"
-                    fetchPriority={index < 2 ? "high" : "low"}
-                  />
-                </div>
+                {service.images ? (
+                  <div className="relative">
+                    <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
+                      <button
+                        onClick={() =>
+                          openSingleImageModal(
+                            service.images[carouselIndex],
+                            `${service.title} - Image ${carouselIndex + 1}`
+                          )
+                        }
+                        className="w-full h-full block"
+                        aria-label={`View ${service.title} - Image ${
+                          carouselIndex + 1
+                        }`}
+                      >
+                        <img
+                          src={
+                            service.images[carouselIndex] || "/placeholder.svg"
+                          }
+                          alt={`${service.title} - Image ${carouselIndex + 1}`}
+                          className="service-image w-full h-full object-cover hover:scale-105 transition-transform duration-300 cursor-pointer"
+                          loading="lazy"
+                          decoding="async"
+                          fetchPriority={index < 2 ? "high" : "low"}
+                        />
+                      </button>
+                    </div>
+
+                    {/* Carousel Navigation */}
+                    <button
+                      onClick={handleCarouselPrev}
+                      className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-black rounded-full p-2 shadow-lg transition-all duration-200 z-10"
+                      aria-label="Previous image"
+                    >
+                      <svg
+                        className="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M15 19l-7-7 7-7"
+                        />
+                      </svg>
+                    </button>
+
+                    <button
+                      onClick={handleCarouselNext}
+                      className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-black rounded-full p-2 shadow-lg transition-all duration-200 z-10"
+                      aria-label="Next image"
+                    >
+                      <svg
+                        className="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 5l7 7-7 7"
+                        />
+                      </svg>
+                    </button>
+
+                    {/* Carousel Indicators */}
+                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
+                      {service.images.map((_, imgIndex) => (
+                        <button
+                          key={imgIndex}
+                          onClick={() => setCarouselIndex(imgIndex)}
+                          className={`w-2 h-2 rounded-full transition-all duration-200 ${
+                            imgIndex === carouselIndex
+                              ? "bg-white"
+                              : "bg-white/50"
+                          }`}
+                          aria-label={`Go to image ${imgIndex + 1}`}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  <button
+                    onClick={() =>
+                      openSingleImageModal(service.image, service.title)
+                    }
+                    className="relative aspect-[4/3] rounded-2xl overflow-hidden block w-full"
+                    aria-label={`View ${service.title}`}
+                  >
+                    <img
+                      src={service.image || "/placeholder.svg"}
+                      alt={service.title}
+                      className="service-image w-full h-full object-cover hover:scale-105 transition-transform duration-300 cursor-pointer"
+                      loading="lazy"
+                      decoding="async"
+                      fetchPriority={index < 2 ? "high" : "low"}
+                    />
+                  </button>
+                )}
               </div>
 
               {/* Content Section */}
@@ -212,6 +364,16 @@ export default function Services() {
           ))}
         </div>
       </div>
+
+      <ImageModal
+        isOpen={modalOpen}
+        onClose={closeModal}
+        images={currentImages}
+        activeIndex={activeImageIndex}
+        onPrevious={currentImages.length > 1 ? handlePrevious : null}
+        onNext={currentImages.length > 1 ? handleNext : null}
+        showNavigation={currentImages.length > 1}
+      />
     </section>
   );
 }

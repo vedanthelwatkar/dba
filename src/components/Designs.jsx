@@ -212,7 +212,7 @@ const Designs = () => {
                   src={item.src || "/placeholder.svg"}
                   alt="Design"
                   className="max-w-full h-auto object-cover"
-                  style={{ minHeight: "250px",maxHeight:"300px" }}
+                  style={{ minHeight: "250px", maxHeight: "300px" }}
                   loading="lazy"
                   decoding="async"
                   fetchPriority={index < 2 ? "high" : "low"}
@@ -248,7 +248,7 @@ const Designs = () => {
                   src={item.src || "/placeholder.svg"}
                   alt="Design"
                   className="max-w-full h-auto object-cover"
-                  style={{ minHeight: "250px", maxHeight:"300px" }}
+                  style={{ minHeight: "250px", maxHeight: "300px" }}
                   loading="lazy"
                   decoding="async"
                   fetchPriority={index < 2 ? "high" : "low"}
