@@ -34,7 +34,7 @@ const PrivacyPolicy = () => {
         <div className="bg-nyghtserif px-10 flex flex-col gap-4 justify-center items-center py-8 sm:py-[60px] md:px-20 lg:rounded-lg">
           <div className="max-w-[700px] flex flex-col gap-4 justify-center items-center ">
             <span className="text-body-lg text-neutral-50">
-              Last Updated December 15, 2024{" "}
+              Last Updated September 16, 2025{" "}
             </span>
             <h2 className="text-neutral-50 text-h2 font-nyghtserif font-bold text-center">
               We care about your privacy

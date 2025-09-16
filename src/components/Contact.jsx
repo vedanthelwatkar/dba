@@ -1,28 +1,22 @@
-"use client";
+"use client"
 
-import CallIcon from "@/svgComponents/CallIcon";
-import CopyrightIcon from "@/svgComponents/CopyrightIcon";
-import FacebookIcon from "@/svgComponents/FacebookIcon";
-import InstagramIcon from "@/svgComponents/InstagramIcon";
-import LinkedinIcon from "@/svgComponents/LinkedinIcon";
-import LocationIcon from "@/svgComponents/LocationIcon";
-import MailIcon from "@/svgComponents/MailIcon";
-import PinterestIcon from "@/svgComponents/PinterestIcon";
-import QR from "@/svgComponents/QR";
-import WhatsappIcon from "@/svgComponents/WhatsappIcon";
+import CallIcon from "@/svgComponents/CallIcon"
+import CopyrightIcon from "@/svgComponents/CopyrightIcon"
+import FacebookIcon from "@/svgComponents/FacebookIcon"
+import InstagramIcon from "@/svgComponents/InstagramIcon"
+import LinkedinIcon from "@/svgComponents/LinkedinIcon"
+import LocationIcon from "@/svgComponents/LocationIcon"
+import MailIcon from "@/svgComponents/MailIcon"
+import PinterestIcon from "@/svgComponents/PinterestIcon"
+import QR from "@/svgComponents/QR"
+import WhatsappIcon from "@/svgComponents/WhatsappIcon"
 
-import { Card, CardContent } from "@/components/ui/card";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-import * as React from "react";
-import { Button } from "@/components/ui/button";
-import { X, ArrowLeft, ArrowRight, ZoomIn, ZoomOut } from "lucide-react";
-import Youtube from "@/svgComponents/Youtube";
+import { Card, CardContent } from "@/components/ui/card"
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
+import * as React from "react"
+import { Button } from "@/components/ui/button"
+import { X, ArrowLeft, ArrowRight, ZoomIn, ZoomOut } from "lucide-react"
+import Youtube from "@/svgComponents/Youtube"
 
 const Contact = () => {
   const navLinks = [
@@ -71,7 +65,7 @@ const Contact = () => {
       href: "https://www.youtube.com/@designsByAbhishek",
       icon: <Youtube color="#211C1D" />,
     },
-  ];
+  ]
 
   const mediaItems = [
     {
@@ -126,148 +120,145 @@ const Contact = () => {
       src: "/media/media-14-designsbyabhishek.jpg",
       alt: "Media 14",
     },
-  ];
+  ]
 
-  const [lightboxOpen, setLightboxOpen] = React.useState(false);
-  const [activeIndex, setActiveIndex] = React.useState(0);
-  const [zoomLevel, setZoomLevel] = React.useState(1);
-  const [panPosition, setPanPosition] = React.useState({ x: 0, y: 0 });
-  const [isDragging, setIsDragging] = React.useState(false);
-  const [dragStart, setDragStart] = React.useState({ x: 0, y: 0 });
+  const [lightboxOpen, setLightboxOpen] = React.useState(false)
+  const [activeIndex, setActiveIndex] = React.useState(0)
+  const [zoomLevel, setZoomLevel] = React.useState(1)
+  const [panPosition, setPanPosition] = React.useState({ x: 0, y: 0 })
+  const [isDragging, setIsDragging] = React.useState(false)
+  const [dragStart, setDragStart] = React.useState({ x: 0, y: 0 })
 
   const openLightbox = (index) => {
-    setActiveIndex(index);
-    setLightboxOpen(true);
-    setZoomLevel(1);
-    setPanPosition({ x: 0, y: 0 });
-    document.body.style.overflow = "hidden";
-    const navbar = document.querySelector("nav, header, .navbar");
+    setActiveIndex(index)
+    setLightboxOpen(true)
+    setZoomLevel(1)
+    setPanPosition({ x: 0, y: 0 })
+    document.body.style.overflow = "hidden"
+    const navbar = document.querySelector("nav, header, .navbar")
     if (navbar) {
-      navbar.style.display = "none";
+      navbar.style.display = "none"
     }
-  };
+  }
 
   const closeLightbox = () => {
-    setLightboxOpen(false);
-    setZoomLevel(1);
-    setPanPosition({ x: 0, y: 0 });
-    document.body.style.overflow = "unset";
-    const navbar = document.querySelector("nav, header, .navbar");
+    setLightboxOpen(false)
+    setZoomLevel(1)
+    setPanPosition({ x: 0, y: 0 })
+    document.body.style.overflow = "unset"
+    const navbar = document.querySelector("nav, header, .navbar")
     if (navbar) {
-      navbar.style.display = "";
+      navbar.style.display = ""
     }
-  };
+  }
 
   const prevItem = React.useCallback(() => {
-    setActiveIndex((i) => (i - 1 + mediaItems.length) % mediaItems.length);
-    setZoomLevel(1);
-    setPanPosition({ x: 0, y: 0 });
-  }, []);
+    setActiveIndex((i) => (i - 1 + mediaItems.length) % mediaItems.length)
+    setZoomLevel(1)
+    setPanPosition({ x: 0, y: 0 })
+  }, [])
 
   const nextItem = React.useCallback(() => {
-    setActiveIndex((i) => (i + 1) % mediaItems.length);
-    setZoomLevel(1);
-    setPanPosition({ x: 0, y: 0 });
-  }, []);
+    setActiveIndex((i) => (i + 1) % mediaItems.length)
+    setZoomLevel(1)
+    setPanPosition({ x: 0, y: 0 })
+  }, [])
 
   const zoomIn = () => {
-    setZoomLevel((prev) => Math.min(prev + 0.5, 3));
-  };
+    setZoomLevel((prev) => Math.min(prev + 0.5, 3))
+  }
 
   const zoomOut = () => {
     setZoomLevel((prev) => {
-      const newZoom = Math.max(prev - 0.5, 0.5);
+      const newZoom = Math.max(prev - 0.5, 0.5)
       if (newZoom <= 1) {
-        setPanPosition({ x: 0, y: 0 });
+        setPanPosition({ x: 0, y: 0 })
       }
-      return newZoom;
-    });
-  };
+      return newZoom
+    })
+  }
 
   const resetZoom = () => {
-    setZoomLevel(1);
-    setPanPosition({ x: 0, y: 0 });
-  };
+    setZoomLevel(1)
+    setPanPosition({ x: 0, y: 0 })
+  }
 
   const handleMouseDown = (e) => {
     if (zoomLevel > 1) {
-      setIsDragging(true);
+      setIsDragging(true)
       setDragStart({
         x: e.clientX - panPosition.x,
         y: e.clientY - panPosition.y,
-      });
+      })
     }
-  };
+  }
 
   const handleMouseMove = (e) => {
     if (isDragging && zoomLevel > 1) {
       setPanPosition({
         x: e.clientX - dragStart.x,
         y: e.clientY - dragStart.y,
-      });
+      })
     }
-  };
+  }
 
   const handleMouseUp = () => {
-    setIsDragging(false);
-  };
+    setIsDragging(false)
+  }
 
   const handleTouchStart = (e) => {
     if (zoomLevel > 1) {
-      setIsDragging(true);
-      const touch = e.touches[0];
+      setIsDragging(true)
+      const touch = e.touches[0]
       setDragStart({
         x: touch.clientX - panPosition.x,
         y: touch.clientY - panPosition.y,
-      });
+      })
     }
-  };
+  }
 
   const handleTouchMove = (e) => {
     if (isDragging && zoomLevel > 1) {
-      e.preventDefault();
-      const touch = e.touches[0];
+      e.preventDefault()
+      const touch = e.touches[0]
       setPanPosition({
         x: touch.clientX - dragStart.x,
         y: touch.clientY - dragStart.y,
-      });
+      })
     }
-  };
+  }
 
   const handleTouchEnd = () => {
-    setIsDragging(false);
-  };
+    setIsDragging(false)
+  }
 
   React.useEffect(() => {
-    if (!lightboxOpen) return;
+    if (!lightboxOpen) return
     const onKey = (e) => {
-      if (e.key === "Escape") closeLightbox();
-      if (e.key === "ArrowLeft") prevItem();
-      if (e.key === "ArrowRight") nextItem();
-      if (e.key === "+" || e.key === "=") zoomIn();
-      if (e.key === "-") zoomOut();
-      if (e.key === "0") resetZoom();
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [lightboxOpen, prevItem, nextItem]);
+      if (e.key === "Escape") closeLightbox()
+      if (e.key === "ArrowLeft") prevItem()
+      if (e.key === "ArrowRight") nextItem()
+      if (e.key === "+" || e.key === "=") zoomIn()
+      if (e.key === "-") zoomOut()
+      if (e.key === "0") resetZoom()
+    }
+    window.addEventListener("keydown", onKey)
+    return () => window.removeEventListener("keydown", onKey)
+  }, [lightboxOpen, prevItem, nextItem])
 
   React.useEffect(() => {
     if (isDragging) {
-      window.addEventListener("mousemove", handleMouseMove);
-      window.addEventListener("mouseup", handleMouseUp);
+      window.addEventListener("mousemove", handleMouseMove)
+      window.addEventListener("mouseup", handleMouseUp)
       return () => {
-        window.removeEventListener("mousemove", handleMouseMove);
-        window.removeEventListener("mouseup", handleMouseUp);
-      };
+        window.removeEventListener("mousemove", handleMouseMove)
+        window.removeEventListener("mouseup", handleMouseUp)
+      }
     }
-  }, [isDragging, dragStart, panPosition]);
+  }, [isDragging, dragStart, panPosition])
 
   return (
-    <section
-      id="contact"
-      className="min-h-screen bg-background text-nyghtserif2 pt-20 relative overflow-hidden"
-    >
+    <section id="contact" className="min-h-screen bg-background text-nyghtserif2 pt-20 relative overflow-hidden">
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <h1 className="text-[8rem] sm:text-[12rem] md:text-[16rem] lg:text-[20rem] text-center font-nyghtserif text-black/5 select-none leading-none">
           DESIGNS BY ABHISHEK
@@ -318,8 +309,7 @@ const Contact = () => {
                     <QR />
                   </div>
                   <span className="text-sm sm:text-base text-center sm:text-left font-cormorant text-nyghtserif2">
-                    Scan the QR code to connect with our expert instantly on
-                    Whatsapp
+                    Scan the QR code to connect with our expert instantly on Whatsapp
                   </span>
                 </div>
               </div>
@@ -419,30 +409,28 @@ const Contact = () => {
               </div>
             </div> */}
 
-            <div>
-              <h3 className="text-2xl font-nyghtserif text-nyghtserif2 mb-6 lg:mb-8">
-                Media Coverage
-              </h3>
+            <div className="flex-1">
+              <h3 className="text-2xl font-nyghtserif text-nyghtserif2 mb-6 lg:mb-8">Media Coverage</h3>
 
-              <div className="w-full">
-                <Carousel className="w-full">
-                  <CarouselContent>
+              <div className="w-full h-full">
+                <Carousel className="w-full h-full">
+                  <CarouselContent className="h-full">
                     {mediaItems.map((item, index) => (
-                      <CarouselItem key={index}>
-                        <div className="p-1">
-                          <Card>
-                            <CardContent className="p-0">
+                      <CarouselItem key={index} className="h-full">
+                        <div className="p-1 h-full">
+                          <Card className="h-full">
+                            <CardContent className="p-0 h-full">
                               <button
                                 type="button"
                                 onClick={() => openLightbox(index)}
-                                className="block w-full"
+                                className="block w-full h-full"
                                 aria-label={`Open media coverage: ${item.alt}`}
                               >
-                                <div className="w-full aspect-[4/3] overflow-hidden rounded-xl">
+                                <div className="w-full h-full overflow-hidden rounded-xl bg-background flex items-center justify-center min-h-[400px] lg:min-h-[500px]">
                                   <img
                                     src={item.src || "/placeholder.svg"}
                                     alt={item.alt}
-                                    className="w-full h-full object-contain"
+                                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                                     loading="lazy"
                                     decoding="async"
                                   />
@@ -454,8 +442,8 @@ const Contact = () => {
                       </CarouselItem>
                     ))}
                   </CarouselContent>
-                  <CarouselPrevious />
-                  <CarouselNext />
+                  <CarouselPrevious className="left-2 lg:left-4 w-10 h-10 lg:w-12 lg:h-12" />
+                  <CarouselNext className="right-2 lg:right-4 w-10 h-10 lg:w-12 lg:h-12" />
                 </Carousel>
               </div>
             </div>
@@ -465,9 +453,7 @@ const Contact = () => {
         <div className="mt-12 lg:mt-20 pt-8 lg:pt-12 border-t border-black/10 mb-6 lg:mb-10">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-6 lg:space-y-0">
             <div className="text-center lg:text-left">
-              <h3 className="text-2xl sm:text-3xl font-nyghtserif text-nyghtserif2 mb-2">
-                1st Floor, Modi House,
-              </h3>
+              <h3 className="text-2xl sm:text-3xl font-nyghtserif text-nyghtserif2 mb-2">1st Floor, Modi House,</h3>
               <p className="text-nyghtserif2 font-nyghtserif text-lg sm:text-xl">
                 Off Link Rd, Near Fun Republic, Mumbai, 400053
                 <br />
@@ -479,8 +465,7 @@ const Contact = () => {
 
         <div className="text-center lg:text-left">
           <span className="flex items-center justify-center lg:justify-start gap-1 font-cormorant text-nyghtserif2 mb-4">
-            <CopyrightIcon color="#211C1D" /> {new Date().getFullYear()} Designs
-            By Abhishek
+            <CopyrightIcon color="#211C1D" /> {new Date().getFullYear()} Designs By Abhishek
           </span>
         </div>
       </div>
@@ -568,12 +553,7 @@ const Contact = () => {
               <div
                 className="w-full h-full flex items-center justify-center overflow-hidden"
                 style={{
-                  cursor:
-                    zoomLevel > 1
-                      ? isDragging
-                        ? "grabbing"
-                        : "grab"
-                      : "default",
+                  cursor: zoomLevel > 1 ? (isDragging ? "grabbing" : "grab") : "default",
                 }}
                 onMouseDown={handleMouseDown}
                 onTouchStart={handleTouchStart}
@@ -614,7 +594,7 @@ const Contact = () => {
         </div>
       )}
     </section>
-  );
-};
+  )
+}
 
-export default Contact;
+export default Contact

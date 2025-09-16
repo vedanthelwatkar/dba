@@ -48,7 +48,7 @@ const TermsAndConditions = () => {
           <div className="max-w-[700px] flex flex-col gap-4 justify-center items-center ">
             {" "}
             <span className="text-body-lg text-neutral-100">
-              Last Updated April 10, 2025{" "}
+              Last Updated September 16, 2025{" "}
             </span>
             <h2 className="text-neutral-50 text-h2 font-heading font-bold text-center">
               Terms & Conditions
