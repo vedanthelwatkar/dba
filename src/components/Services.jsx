@@ -22,7 +22,7 @@ export default function Services() {
       title: "15+ Years of Excellence",
       subtitle: "Crafting Unforgettable Moments",
       description:
-        "Our expertise, built upon years of dedication since 2008, allows us to transform your vision into extraordinary celebrations. Our approach is designed to be seamless and sophisticated, ensuring every detail reflects your unique story.",
+        "For over two decades, we've been the storytellers behind India's most unforgettable celebrations—where design meets emotion, and every detail whispers luxury. From the star-studded unions of Yuvraj Singh & Hazel Keech; Bhuvneshwar Kumar & Nupur Nagar to collaborations with icons like Tony Robbins, Arjun Rampal, Anju Modi, Rohit Bal, and Sabyasachi, our journey has been adorned with illustrious partnerships. We've also had the privilege of crafting experiences for esteemed organizations such as DY Patil,  Sanjay Ghodawat Group, Dollar Club, Muthoot Group, Being Human,  Somany Tiles & Karnani Family.",
       image: "/profile-images/abhishek-kaushik-image-3-designsbyabhishek.jpg",
     },
     {
