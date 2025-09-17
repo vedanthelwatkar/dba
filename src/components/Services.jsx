@@ -45,11 +45,11 @@ export default function Services() {
       description:
         "From immersive 3D concepts to stunningly executed event layouts, we bring imagination to life. Our creative designs help you visualize the celebration even before it unfolds, ensuring perfection in planning and delivery.",
       images: [
-        "/3D-modelling-3-designsbyabhishek.jpg",
-        "/3D-modelling-designsbyabhishek.jpg",
-        "/3D-modelling-2-designsbyabhishek.jpg",
-        "/event-layout-designsbyabhishek.jpg",
-        "/concept-design-designsbyabhishek.jpg",
+        "/3d-models-1-designsbyabhishek.jpg",
+        "/3d-models-2-designsbyabhishek.jpg",
+        "/3d-models-3-designsbyabhishek.jpg",
+        "/3d-models-4-designsbyabhishek.jpg",
+        "/3d-models-5-designsbyabhishek.jpg",
       ],
     },
   ];

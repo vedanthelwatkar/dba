@@ -10,9 +10,9 @@ const scenographyItems = [
       "https://www.youtube.com/embed/e0SL3m-PIRc?mute=1&loop=1&playlist=e0SL3m-PIRc&controls=0&showinfo=0&rel=0&modestbranding=1&enablejsapi=1",
   },
   {
-    videoId: "fq3OJHXBx7s",
+    videoId: "sxoAxdFqW1o",
     embedUrl:
-      "https://www.youtube.com/embed/fq3OJHXBx7s?mute=1&loop=1&playlist=fq3OJHXBx7s&controls=0&showinfo=0&rel=0&modestbranding=1&enablejsapi=1",
+      "https://www.youtube.com/embed/sxoAxdFqW1o?mute=1&loop=1&playlist=sxoAxdFqW1o&controls=0&showinfo=0&rel=0&modestbranding=1&enablejsapi=1",
   },
   {
     videoId: "liMYhUzdXbs",
