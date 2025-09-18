@@ -222,39 +222,39 @@ const Designs = () => {
           </div>
 
           <div className="center-text absolute inset-0 flex items-center justify-center z-20 px-4 md:px-8">
-            <div className="flex flex-col items-center justify-center text-center w-full max-w-4xl gap-8">
+            <div className="flex flex-col items-center justify-center text-center w-full max-w-4xl">
               <div
                 ref={craftingTextRef}
                 className="font-nyghtserif text-nyghtserif2 tracking-tight leading-tight"
-                style={{ fontSize: "clamp(1rem, 3vw, 3rem)" }}
+                style={{ fontSize: "clamp(2rem, 6.5vw, 6rem)" }}
               >
                 SOMANY TILES
               </div>
               <div
                 ref={craftingTextRef}
                 className="font-nyghtserif text-nyghtserif2 tracking-tight leading-tight"
-                style={{ fontSize: "clamp(1rem, 3vw, 3rem)" }}
+                style={{ fontSize: "clamp(2rem, 6.5vw, 6rem)" }}
               >
                 YUVRAJ SINGH - HAZEL KEECH
               </div>
               <div
                 ref={craftingTextRef}
                 className="font-nyghtserif text-nyghtserif2 tracking-tight leading-tight"
-                style={{ fontSize: "clamp(1rem, 3vw, 3rem)" }}
+                style={{ fontSize: "clamp(2rem, 6.5vw, 6rem)" }}
               >
                 DY PATIL - RUTURAJ PATIL
               </div>
               <div
                 ref={craftingTextRef}
                 className="font-nyghtserif text-nyghtserif2 tracking-tight leading-tight"
-                style={{ fontSize: "clamp(1rem, 3vw, 3rem)" }}
+                style={{ fontSize: "clamp(2rem, 6.5vw, 6rem)" }}
               >
                 MUTHOOT GROUP
               </div>
               <div
                 ref={craftingTextRef}
                 className="font-nyghtserif text-nyghtserif2 tracking-tight leading-tight"
-                style={{ fontSize: "clamp(1rem, 3vw, 3rem)" }}
+                style={{ fontSize: "clamp(2rem, 6.5vw, 6rem)" }}
               >
                 CENTURY PLYWOOD
               </div>
