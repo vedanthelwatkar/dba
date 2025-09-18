@@ -59,8 +59,9 @@ const Designs = () => {
 
     ScrollTrigger.create({
       trigger: ".designs-container",
-      start: "top bottom",
-      end: "bottom top",
+      start: "top top",
+      end: "bottom -200%",
+      pin: true,
       scrub: 1,
       onUpdate: (self) => {
         const progress = self.progress;
@@ -187,7 +188,7 @@ const Designs = () => {
   return (
     <section
       id="designs"
-      className="designs-container h-screen flex items-center justify-center overflow-hidden z-20 mb-0"
+      className="designs-container sticky top-0 h-screen flex items-center justify-center overflow-hidden z-20 mb-0"
     >
       <div className="absolute w-full h-full flex items-center justify-center">
         <div className="absolute inset-0 w-full h-full z-0 bg-white" />
