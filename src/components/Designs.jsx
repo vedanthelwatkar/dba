@@ -59,9 +59,8 @@ const Designs = () => {
 
     ScrollTrigger.create({
       trigger: ".designs-container",
-      start: "top top",
-      end: "bottom -200%",
-      pin: true,
+      start: "top bottom",
+      end: "bottom top",
       scrub: 1,
       onUpdate: (self) => {
         const progress = self.progress;
@@ -188,7 +187,7 @@ const Designs = () => {
   return (
     <section
       id="designs"
-      className="designs-container sticky top-0 h-screen flex items-center justify-center overflow-hidden z-20 mb-0"
+      className="designs-container h-screen flex items-center justify-center overflow-hidden z-20 mb-0"
     >
       <div className="absolute w-full h-full flex items-center justify-center">
         <div className="absolute inset-0 w-full h-full z-0 bg-white" />
@@ -222,39 +221,39 @@ const Designs = () => {
           </div>
 
           <div className="center-text absolute inset-0 flex items-center justify-center z-20 px-4 md:px-8">
-            <div className="flex flex-col items-center justify-center text-center w-full max-w-4xl">
+            <div className="flex flex-col items-center justify-center text-center w-full max-w-4xl gap-8">
               <div
                 ref={craftingTextRef}
                 className="font-nyghtserif text-nyghtserif2 tracking-tight leading-tight"
-                style={{ fontSize: "clamp(2rem, 6.5vw, 6rem)" }}
+                style={{ fontSize: "clamp(1rem, 3vw, 3rem)" }}
               >
                 SOMANY TILES
               </div>
               <div
                 ref={craftingTextRef}
                 className="font-nyghtserif text-nyghtserif2 tracking-tight leading-tight"
-                style={{ fontSize: "clamp(2rem, 6.5vw, 6rem)" }}
+                style={{ fontSize: "clamp(1rem, 3vw, 3rem)" }}
               >
                 YUVRAJ SINGH - HAZEL KEECH
               </div>
               <div
                 ref={craftingTextRef}
                 className="font-nyghtserif text-nyghtserif2 tracking-tight leading-tight"
-                style={{ fontSize: "clamp(2rem, 6.5vw, 6rem)" }}
+                style={{ fontSize: "clamp(1rem, 3vw, 3rem)" }}
               >
                 DY PATIL - RUTURAJ PATIL
               </div>
               <div
                 ref={craftingTextRef}
                 className="font-nyghtserif text-nyghtserif2 tracking-tight leading-tight"
-                style={{ fontSize: "clamp(2rem, 6.5vw, 6rem)" }}
+                style={{ fontSize: "clamp(1rem, 3vw, 3rem)" }}
               >
                 MUTHOOT GROUP
               </div>
               <div
                 ref={craftingTextRef}
                 className="font-nyghtserif text-nyghtserif2 tracking-tight leading-tight"
-                style={{ fontSize: "clamp(2rem, 6.5vw, 6rem)" }}
+                style={{ fontSize: "clamp(1rem, 3vw, 3rem)" }}
               >
                 CENTURY PLYWOOD
               </div>
